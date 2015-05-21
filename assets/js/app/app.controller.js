@@ -4,8 +4,7 @@
 (function(){
     var app = angular.module("app");
     var appCtrl = function($scope){
-        $scope.judul = "Karambiacukia";
-        $scope.template = "home.html";
+
     };
     app.controller("appCtrl",["$scope",appCtrl]);
 }());

@@ -317,7 +317,8 @@
             </form>
         </li>
         <li class="divider"></li>
-        <li><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="#/home"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="#/test"><i class="fa fa-home"></i> <span>Test Page</span></a></li>
         <li><a href="javascript:;"><i class="fa fa-th"></i> <span>Layout Options</span> </a>
             <ul class="acc-menu">
                 <li><a href="layout-grid.htm"><span>Grids</span></a></li>
@@ -636,9 +637,12 @@
 </div>
 <!-- END RIGHTBAR -->
 
-<div ng-include="template">
-
+<div id="page-content">
+    <div id='wrap'>
+        <div ng-view></div>
+    </div>
 </div>
+
 
 <footer role="contentinfo">
     <div class="clearfix">
