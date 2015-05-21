@@ -18,21 +18,21 @@
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Nama Supplier</label>
                         <div class="col-sm-6">
-                            <input type="text" placeholder="Nama Supplier" required="required" class="form-control">
+                            <input ng-model="supplier.nama" type="text" placeholder="Nama Supplier" required="required" class="form-control">
                         </div>
                     </div>
 					
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Alamat</label>
                         <div class="col-sm-6">
-                            <input type="text" placeholder="Alamat" required="required" class="form-control">
+                            <input ng-model="supplier.alamat" type="text" placeholder="Alamat" required="required" class="form-control">
                         </div>
                     </div>
 					
 					<div class="form-group">
                         <label class="col-sm-3 control-label">No. Telp</label>
                         <div class="col-sm-6">
-                            <input type="text" placeholder="No. Telp" required="required" class="form-control">
+                            <input ng-model="supplier.telp" type="text" placeholder="No. Telp" required="required" class="form-control">
                         </div>
                     </div>
                 </form>
@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div class="btn-toolbar">
-                            <button class="btn-primary btn">Submit</button>
+                            <button ng-click="simpanSupplier(supplier)" class="btn-primary btn">Submit</button>
                             <button class="btn-default btn">Cancel</button>
                         </div>
                     </div>
@@ -50,6 +50,6 @@
 		</div>
     </div>
 </div>
-
+{{nama}} {{alamat}} {{telp}}
 </div>
 

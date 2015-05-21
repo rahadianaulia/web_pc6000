@@ -7,6 +7,12 @@
 		$scope.isActive=function(viewLocation){
 			return viewLocation ===$location.path();
 		};
+		
+		$scope.simpanSupplier=function(supplier){
+			$scope.nama=supplier.nama;
+			$scope.alamat=supplier.alamat;
+			$scope.telp=supplier.telp;
+		};
     };
     app.controller("appCtrl",["$scope","$location",appCtrl]);
 }());
