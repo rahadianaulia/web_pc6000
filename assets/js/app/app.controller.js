@@ -3,8 +3,10 @@
  */
 (function(){
     var app = angular.module("app");
-    var appCtrl = function($scope){
-
+    var appCtrl = function($scope, $location){
+		$scope.isActive=function(viewLocation){
+			return viewLocation ===$location.path();
+		};
     };
-    app.controller("appCtrl",["$scope",appCtrl]);
+    app.controller("appCtrl",["$scope","$location",appCtrl]);
 }());

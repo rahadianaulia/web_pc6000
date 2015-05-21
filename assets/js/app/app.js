@@ -11,6 +11,9 @@
             when("/test",{
                 templateUrl : "test.html"
             }).
+			when("/inputsupplier",{
+				templateUrl:"inputsupplier.html"
+			}).
             otherwise({
                 redirectTo : "/home"
             })
