@@ -9,20 +9,19 @@ if(isset($_POST["action"])){
     $action = $_POST["action"];
 
     if($action == "getSupplier"){
-        echo GetSupplier();
+        echo GetSupplier($conn_db);
     }
     if($action == "getSupplierById"){
-        echo GetSupplierById($params);
+        echo GetSupplierById($conn_db,$params);
     }
     if($action == "addSupplier"){
-        echo AddSupplier($params);
+        echo AddSupplier($conn_db,$params);
     }
 }
 
 
 
-function GetSupplier(){
-    $cnn = GetKoneksi();
+function GetSupplier($cnn){
     $que = "select * from suplier";
     $result = mysqli_query($cnn, $que);
     $rows = mysqli_fetch_array($result,MYSQLI_ASSOC);
@@ -30,8 +29,7 @@ function GetSupplier(){
     return json_encode($rows);
 }
 
-function GetSupplierById($params){
-    $cnn = GetKoneksi();
+function GetSupplierById($cnn,$params){
     $param = json_decode($params);
     $que = "select * from suplier where idsuplier=$param->id";
     $result = mysqli_query($cnn, $que);
@@ -40,10 +38,9 @@ function GetSupplierById($params){
     return json_encode($rows);
 }
 
-function AddSupplier($params){
+function AddSupplier($cnn,$params){
     $supplier = json_decode($params);
     $que = "insert into suplier values (null, '$supplier->nama', '$supplier->alamat', '$supplier->telp')";
-    $cnn = GetKoneksi();
     $result = mysqli_query($cnn,$que);
     mysqli_close($cnn);
     return json_encode($result);
