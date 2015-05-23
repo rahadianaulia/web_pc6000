@@ -1,10 +1,13 @@
 <?php
 include_once("../config.php");
-if(isset($_POST["params"])){
-    $params = $_POST["params"];
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+if(isset($request->params)){
+    $params = $request->params;
 }
-if(isset($_POST["action"])){
-    $action = $_POST["action"];
+
+if(isset($request->action)){
+    $action = $request->action;
     if($action == "getSupplier"){
         echo GetSupplier($conn_db);
     }
@@ -17,10 +20,9 @@ if(isset($_POST["action"])){
     if($action == "deleteSupplier"){
         echo DeleteSupplier($conn_db,$params);
     }
-    if($action == "updateSupplier"){
-        echo UpdateSupplier($conn_db, $params);
-    }
 }
+
+
 
 function GetSupplier($cnn){
     $que = "select * from suplier";
@@ -47,7 +49,7 @@ function AddSupplier($cnn,$params){
     $que = "insert into suplier values (null, '$supplier->nama', '$supplier->alamat', '$supplier->telp')";
     $result = mysqli_query($cnn,$que);
     mysqli_close($cnn);
-    return $result;
+    return json_encode($result);
 }
 
 
@@ -56,15 +58,17 @@ function DeleteSupplier($cnn,$params){
     $que = "delete from suplier where idsuplier = $supplier->id";
     $result = mysqli_query($cnn, $que);
     mysqli_close($cnn);
-    return $result;
-}
-function UpdateSupplier($cnn,$params){
-    $supplier = json_decode($params);
-    $que = "update suplier set nama='$supplier->nama', alamat='$supplier->alamat', telp = '$supplier->telp'  where idsuplier = $supplier->id";
-    $result = mysqli_query($cnn, $que);
-    mysqli_close($cnn);
-    return $result;
+    return json_encode($result);
 }
 
+function test(){
+    $array = [
+        "nama" => "Skylab",
+        "alamat" => "Padang"
+    ];
+
+return json_encode($array);
+
+}
 
 ?>
