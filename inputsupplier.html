@@ -14,7 +14,7 @@
 
           </div>
           <div class="panel-body">            
-                <form action="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                <form ng-submit="simpanSupplier(supplier)" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Nama Supplier</label>
                         <div class="col-sm-6">
@@ -35,18 +35,19 @@
                             <input ng-model="supplier.telp" type="text" placeholder="No. Telp" required="required" class="form-control">
                         </div>
                     </div>
-                </form>
-            </div>
-        <div class="panel-footer">
-                <div class="row">
+                
+            
+        
+                <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div class="btn-toolbar">
-                            <button ng-click="simpanSupplier(supplier)" class="btn-primary btn">Submit</button>
+                            <button type="submit" class="btn-primary btn">Submit</button>
                             <button class="btn-default btn">Cancel</button>
                         </div>
                     </div>
                 </div>
-            </div>
+				</form>
+				</div>
 		</div>
     </div>
 </div>
