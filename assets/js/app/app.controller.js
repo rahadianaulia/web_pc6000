@@ -7,21 +7,20 @@
         $scope.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
-        $scope.listSupplier = supplierFactory.listSupplier;
+        $scope.factoryRespon = supplierFactory;
 
 
-        $scope.setListSupplier = function (supplier) {
+        $scope.updateSupplier = function (supplier) {
             var data = {"id": 2, "nama":supplier.nama,"alamat":supplier.alamat,"telp":supplier.telp};
             supplierFactory.getData("updateSupplier", JSON.stringify(data)).
                 then(function () {
                     console.log(data);
-                    console.log($scope.listSupplier);
+                    console.log($scope.factoryRespon);
                 }, function () {
                     console.log("Error");
                 });
 
         };
-        //setListSupplier();
 
         $scope.simpanSupplier = function (supplier) {
             $scope.nama = supplier.nama;
