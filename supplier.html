@@ -1,0 +1,31 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li class='active'><a href="#/supplier">Supplier</a></li>
+    </ol>
+    <h1>Supplier</h1>
+</div>
+<div class="container">
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nama</th>
+        <th>Alamat</th>
+        <th>Telp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="item in supplier.listSupplier">
+        <td>{{item.idsuplier}}</td>
+        <td>{{item.nama}}</td>
+        <td>{{item.alamat}}</td>
+        <td>{{item.telp}}</td>
+    </tr>
+    </tbody>
+</table>
+    <a href="#/supplier/add" class="btn btn-primary">Add</a>
+</div>
+<!-- container -->
+
+
+
