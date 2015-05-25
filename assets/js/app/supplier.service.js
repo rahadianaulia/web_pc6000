@@ -4,6 +4,7 @@
 
         var listSupplier = [];
         var objSupplier = [];
+
         var getData = function(actionMethode, methodeParams){
             var deferred = $q.defer();
             var url = "repository/supplier/supplier.php";
@@ -20,8 +21,11 @@
                 },function(){
                     deferred.reject();
                 });
+				
+				
             return deferred.promise;
         };
+		
         return {
             listSupplier : listSupplier,
             objSupplier : objSupplier,

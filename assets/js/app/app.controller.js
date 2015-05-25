@@ -8,6 +8,7 @@
             return viewLocation === $location.path();
         };
 
+
     };
     app.controller("appCtrl", ["$scope", "$location", appCtrl]);
 }());

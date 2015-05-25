@@ -44,7 +44,7 @@ function GetSupplierById($cnn,$params){
 
 function AddSupplier($cnn,$params){
     $supplier = json_decode($params);
-    $que = "insert into suplier values (null, '$supplier->nama', '$supplier->alamat', '$supplier->telp')";
+    $que = "insert into suplier(nama, alamat, telp) values ('$supplier->nama', '$supplier->alamat', '$supplier->telp')";
     $result = mysqli_query($cnn,$que);
     mysqli_close($cnn);
     return $result;
