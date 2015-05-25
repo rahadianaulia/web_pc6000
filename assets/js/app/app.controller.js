@@ -9,7 +9,8 @@
         };
         $scope.factoryRespon = supplierFactory;
 
-
+		$scope.total=Object.keys(supplierFactory.listSupplier).length;
+	
         $scope.updateSupplier = function (supplier) {
             var data = {"id": 2, "nama":supplier.nama,"alamat":supplier.alamat,"telp":supplier.telp};
             supplierFactory.getData("updateSupplier", JSON.stringify(data)).
@@ -26,6 +27,15 @@
             $scope.nama = supplier.nama;
             $scope.alamat = supplier.alamat;
             $scope.telp = supplier.telp;
+			
+			var data = {"nama":supplier.nama,"alamat":supplier.alamat,"telp":supplier.telp};
+			supplierFactory.getData("addSupplier", JSON.stringify(data)).
+                then(function () {
+                    console.log(data);
+                    console.log($scope.factoryRespon);
+                }, function () {
+                    console.log("Error");
+                });
         };
 
 

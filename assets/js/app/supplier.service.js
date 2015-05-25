@@ -2,7 +2,8 @@
     var app = angular.module("app");
     var supplierFactory = function($http, $q) {
 
-        var listSupplier = [];
+		var listSupplier = [];
+		
         var getData = function(actionMethode, methodeParams){
             var deferred = $q.defer();
             var url = "repository/supplier/supplier.php";
@@ -19,8 +20,11 @@
                 },function(){
                     deferred.reject();
                 });
+				
+				
             return deferred.promise;
         };
+		
         return {
             listSupplier : listSupplier,
             getData : getData
