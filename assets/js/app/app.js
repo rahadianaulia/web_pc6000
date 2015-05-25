@@ -11,12 +11,17 @@
             when("/test",{
                 templateUrl : "test.html"
             }).
-			when("/supplier/add",{
-				templateUrl:"inputsupplier.html"
-			}).
             when("/supplier",{
                 templateUrl : "supplier.html",
                 controller : "supplierCtrl"
+            }).
+            when("/supplier/add",{
+                templateUrl:"inputsupplier.html",
+                controller : "supplierCtrl"
+            }).
+            when("/supplier/edit",{
+                templateUrl:"editsupplier.html",
+                controller : "editSupplierCtrl"
             }).
             otherwise({
                 redirectTo : "/home"

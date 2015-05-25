@@ -8,18 +8,23 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Id</th>
+        <th data-ng-hide="true">Id</th>
         <th>Nama</th>
         <th>Alamat</th>
         <th>Telp</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr data-ng-repeat="item in supplier.listSupplier">
-        <td>{{item.idsuplier}}</td>
+    <tr data-ng-repeat="item in respons.listSupplier">
+        <td data-ng-hide="true">{{item.idsuplier}}</td>
         <td>{{item.nama}}</td>
         <td>{{item.alamat}}</td>
         <td>{{item.telp}}</td>
+        <td>
+            <a class="btn btn-primary" data-ng-click="fillForm(item)" href="#/supplier/edit"  >Edit</a>
+            <button class="btn btn-danger" data-ng-click="fillForm(item)">Delete</button>
+        </td>
     </tr>
     </tbody>
 </table>

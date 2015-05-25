@@ -61,6 +61,8 @@ function DeleteSupplier($cnn,$params){
     return json_encode($result);
 }
 
+
+
 function test(){
     $array = [
         "nama" => "Skylab",

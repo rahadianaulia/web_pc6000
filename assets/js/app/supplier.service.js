@@ -3,6 +3,7 @@
     var supplierFactory = function($http, $q) {
 
         var listSupplier = [];
+        var objSupplier = [];
         var getData = function(actionMethode, methodeParams){
             var deferred = $q.defer();
             var url = "repository/supplier/supplier.php";
@@ -23,7 +24,9 @@
         };
         return {
             listSupplier : listSupplier,
+            objSupplier : objSupplier,
             getData : getData
+
         }
     };
     app.factory("supplierFactory", ["$http", "$q",supplierFactory]);
