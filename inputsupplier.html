@@ -14,6 +14,7 @@
 
           </div>
           <div class="panel-body">            
+		  <div ng-include="showAlert"></div>
                 <form ng-submit="simpanSupplier(supplier)" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Nama Supplier</label>
@@ -51,6 +52,5 @@
 		</div>
     </div>
 </div>
-{{nama}} {{alamat}} {{telp}}
 </div>
 
