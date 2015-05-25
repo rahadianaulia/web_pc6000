@@ -23,6 +23,10 @@
                 templateUrl:"editsupplier.html",
                 controller : "editSupplierCtrl"
             }).
+            when("/customer",{
+                templateUrl:"customer.html",
+                controller : "customerCtrl"
+            }).
             otherwise({
                 redirectTo : "/home"
             })
