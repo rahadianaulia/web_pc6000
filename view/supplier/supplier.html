@@ -18,7 +18,6 @@
                     </div>
                 </div>
                 <div class="panel-body collapse in">
-                    {{total}}
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered ">
                         <thead>
                         <tr>
@@ -26,22 +25,25 @@
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>Telp</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr data-ng-repeat="item in respons.listSupplier">
+                        <tr data-ng-repeat="item in respons.listSupplier | startFrom:(currentPage-1)*numPerPage | limitTo:numPerPage">
                             <td data-ng-hide="true">{{item.idsuplier}}</td>
                             <td>{{item.nama}}</td>
                             <td>{{item.alamat}}</td>
                             <td>{{item.telp}}</td>
                             <td>
-                                <a class="btn btn-primary" data-ng-click="edit(item)" href="#/supplier/edit">Edit</a>
-                                <button class="btn btn-danger">Delete</button>
+                                <a class="btn btn-primary btn-xs" data-ng-click="edit(item)" href="#/supplier/edit">Edit</a>
+                                <button class="btn btn-danger btn-xs">Delete</button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+					<div>
+					<pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" items-per-page="numPerPage"></pagination>
+					</div>
                 </div>
                 <div class="panel-footer">
                     <a href="#/supplier/add" class="btn btn-primary">Add</a>
@@ -52,6 +54,3 @@
 
 </div>
 <!-- container -->
-
-
-
