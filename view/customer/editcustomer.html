@@ -1,0 +1,51 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/customer">Customer</a></li>
+        <li class='active'>Edit Customer</li>
+    </ol>
+    <h1>Edit Customer</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-midnightblue">
+                <div class="panel-heading">
+                    <h4>Form Edit Customer</h4>
+
+
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">ID Customer</label>
+                            <div class="col-sm-6">
+                                <label class="form-control">{{item.idcustomer}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nama Supplier</label>
+                            <div class="col-sm-6">
+                                <input ng-model="item.nama" type="text" placeholder="Nama Supplier" required="required" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Alamat</label>
+                            <div class="col-sm-6">
+                                <input ng-model="item.alamat" type="text" placeholder="Alamat" required="required" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div class="btn-toolbar">
+                                    <button type="submit" class="btn-primary btn" data-ng-click="simpan(item)">Submit</button>
+                                    <button class="btn-default btn">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

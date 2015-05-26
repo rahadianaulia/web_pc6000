@@ -16,6 +16,8 @@
     <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'>
 
     <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'>
+	
+	<link rel='stylesheet' type='text/css' href='assets/css/bootstrap.min.css'/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
     <!--[if lt IE 9]>
@@ -319,7 +321,8 @@
         <li class="divider"></li>
         <li ng-class="{ active : isActive('/home') }"><a href="#/home"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
         <li ng-class="{ active : isActive('/test') }"><a href="#/test"><i class="fa fa-home"></i> <span>Test Page</span></a></li>
-		<li ng-class="{ active : isActive('/inputsupplier') }"><a href="#/inputsupplier"><i class="fa fa-home"></i> <span>Input Supplier</span></a></li>
+		<li ng-class="{ active : isActive('/supplier') }"><a href="#/supplier"><i class="fa fa-home"></i> <span>Supplier</span></a></li>
+        <li ng-class="{ active : isActive('/customer') }"><a href="#/customer"><i class="fa fa-home"></i> <span>Customer</span></a></li>
         <li><a href="javascript:;"><i class="fa fa-th"></i> <span>Layout Options</span> </a>
             <ul class="acc-menu">
                 <li><a href="layout-grid.htm"><span>Grids</span></a></li>
@@ -672,13 +675,18 @@
 <script type='text/javascript' src='assets/js/angular-route.js'></script>
 <script type='text/javascript' src='assets/js/jqueryui-1.10.3.min.js'></script>
 <script type='text/javascript' src='assets/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='assets/js/ui-bootstrap-tpls-0.12.1.min.js'></script>
 <script type='text/javascript' src='assets/js/enquire.js'></script>
 <script type='text/javascript' src='assets/js/jquery.cookie.js'></script>
 <script type='text/javascript' src='assets/js/jquery.nicescroll.min.js'></script>
 <script type='text/javascript' src='assets/js/application.js'></script>
-<script type='text/javascript' src='assets/js/app/app.js'></script>
-<script type='text/javascript' src='assets/js/app/app.controller.js'></script>
-
-
+<script type='text/javascript' src='assets/app/app.js'></script>
+<script type='text/javascript' src='assets/app/app.controller.js'></script>
+<script type='text/javascript' src='assets/app/supplier/supplier.service.js'></script>
+<script type='text/javascript' src='assets/app/supplier/supplierCtrl.js'></script>
+<script type='text/javascript' src='assets/app/supplier/editSupplierCtrl.js'></script>
+<script type='text/javascript' src='assets/app/customer/customerCtrl.js'></script>
+<script type='text/javascript' src='assets/app/customer/customerService.js'></script>
+<script type='text/javascript' src='assets/app/customer/editCustomerCtrl.js'></script>
 </body>
 </html>

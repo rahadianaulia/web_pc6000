@@ -1,6 +1,6 @@
 <div id="page-heading">
     <ol class="breadcrumb">
-        <li><a href="#/home">Dashboard</a></li>
+        <li><a href="#/supplier">Supplier</a></li>
 		<li class='active'>Input Supplier</li>
     </ol>
     <h1>Input Supplier</h1>
@@ -11,10 +11,14 @@
         <div class="panel panel-midnightblue">
           <div class="panel-heading">
                 <h4>Form Input Supplier</h4>
-
           </div>
-          <div class="panel-body">            
-		  <div ng-include="showAlert"></div>
+		  
+          <div class="panel-body">  
+<div class="alert alert-dismissable alert-info">
+	Data supplier berhasil ditambahkan.
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+</div>
+          
                 <form ng-submit="simpanSupplier(supplier)" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Nama Supplier</label>
@@ -42,7 +46,7 @@
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div class="btn-toolbar">
-                            <button type="submit" class="btn-primary btn">Submit</button>
+                            <button type="submit" class="btn-primary btn" data-ng-click="updateSupplier(supplier)">Submit</button>
                             <button class="btn-default btn">Cancel</button>
                         </div>
                     </div>
