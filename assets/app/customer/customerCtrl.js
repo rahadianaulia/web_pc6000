@@ -6,6 +6,10 @@
                 customerFactory.getData("getAll", undefined).then(function (){},function(){});
             };
             init();
+
+            $scope.edit = function(item){
+                customerFactory.objCustomer = item;
+            };
             console.log($scope.respon);
     }]);
 }());

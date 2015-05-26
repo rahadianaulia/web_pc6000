@@ -35,7 +35,7 @@ function GetSupplier($cnn){
 
 function GetSupplierById($cnn,$params){
     $param = json_decode($params);
-    $que = "select * from suplier where idsuplier=$param->id";
+    $que = "select * from suplier where idsuplier=$param->idsuplier";
     $result = mysqli_query($cnn, $que);
     $rows = mysqli_fetch_array($result,MYSQLI_ASSOC);
     mysqli_close($cnn);
@@ -53,14 +53,14 @@ function AddSupplier($cnn,$params){
 
 function DeleteSupplier($cnn,$params){
     $supplier = json_decode($params);
-    $que = "delete from suplier where idsuplier = $supplier->id";
+    $que = "delete from suplier where idsuplier = $supplier->idsuplier";
     $result = mysqli_query($cnn, $que);
     mysqli_close($cnn);
     return $result;
 }
 function UpdateSupplier($cnn,$params){
     $supplier = json_decode($params);
-    $que = "update suplier set nama='$supplier->nama', alamat='$supplier->alamat', telp = '$supplier->telp'  where idsuplier = $supplier->id";
+    $que = "update suplier set nama='$supplier->nama', alamat='$supplier->alamat', telp = '$supplier->telp'  where idsuplier = $supplier->idsuplier";
     $result = mysqli_query($cnn, $que);
     mysqli_close($cnn);
     return $result;

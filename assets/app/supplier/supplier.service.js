@@ -3,7 +3,7 @@
     var supplierFactory = function ($http, $q) {
 
         var listSupplier = [];
-        var objSupplier = [];
+        var objSupplier = {};
 
         var getData = function (actionMethode, methodeParams) {
             var deferred = $q.defer();

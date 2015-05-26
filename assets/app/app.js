@@ -12,20 +12,24 @@
                 templateUrl : "test.html"
             }).
             when("/supplier",{
-                templateUrl : "supplier.html",
+                templateUrl : "view/supplier/supplier.html",
                 controller : "supplierCtrl"
             }).
             when("/supplier/add",{
-                templateUrl:"inputsupplier.html",
+                templateUrl:"view/supplier/inputSupplier.html",
                 controller : "supplierCtrl"
             }).
             when("/supplier/edit",{
-                templateUrl:"editsupplier.html",
+                templateUrl:"view/supplier/editSupplier.html",
                 controller : "editSupplierCtrl"
             }).
             when("/customer",{
-                templateUrl:"customer.html",
+                templateUrl:"view/customer/customer.html",
                 controller : "customerCtrl"
+            }).
+            when("/customer/edit",{
+                templateUrl:"view/customer/editCustomer.html",
+                controller : "editCustomerCtrl"
             }).
             otherwise({
                 redirectTo : "/home"
