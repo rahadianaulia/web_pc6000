@@ -1,13 +1,14 @@
 (function () {
     var app = angular.module("app");
-    var supplierFactory = function ($http, $q) {
+    var barangFactory = function ($http, $q) {
 
-        var listSupplier = [];
-        var objSupplier = {};
+        var listBarang = [];
+        var objBarang = {};
+		var listJenisBarang = [];
 
         var getData = function (actionMethode, methodeParams) {
             var deferred = $q.defer();
-            var url = "repository/supplier/supplier.php";
+            var url = "repository/barang/barang.php";
             var dataload = $.param({action: actionMethode, params: methodeParams});
             $http({
                 url: url,
@@ -16,9 +17,9 @@
                 data: dataload
             })
                 .then(function (result) {
-                    angular.copy(result.data, listSupplier);
+                    angular.copy(result.data, listBarang);
+					angular.copy(result.data, listJenisBarang);
                     deferred.resolve();
-					console.log(result.data);
                 }, function () {
                     deferred.reject();
                 });
@@ -28,12 +29,13 @@
         };
 
         return {
-            listSupplier: listSupplier,
-            objSupplier: objSupplier,
-            getData: getData
+            listBarang: listBarang,
+            objBarang: objBarang,
+            getData: getData,
+			listJenisBarang : listJenisBarang
 
         }
     };
-    app.factory("supplierFactory", ["$http", "$q", supplierFactory]);
+    app.factory("barangFactory", ["$http", "$q", barangFactory]);
 }());
 
