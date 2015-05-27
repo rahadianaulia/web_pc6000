@@ -35,6 +35,18 @@
                 templateUrl:"view/customer/addCustomer.html",
                 controller : "addCustomerCtrl"
             }).
+			when("/barang",{
+				templateUrl : "view/barang/barang.html",
+				controller : "barangCtrl"
+			}).
+			when("/barang/add",{
+				templateUrl : "view/barang/inputBarang.html",
+				controller : "barangCtrl"
+			}).
+			when("/barang/edit",{
+				templateUrl : "view/barang/editbarang.html",
+				controller : "editBarangCtrl"
+			}).
             otherwise({
                 redirectTo : "/home"
             })
