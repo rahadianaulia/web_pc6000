@@ -1,7 +1,7 @@
 (function(){
     var app = angular.module("app");
-    app.controller("addSupplierCtrl",["$scope","supplierFactory", function($scope, supplierFactory){
-        $scope.status = 0;
+    app.controller("addSupplierCtrl",["$scope","$location","supplierFactory", function($scope,$location, supplierFactory){
+        $scope.messageSuccess = 0;
         $scope.supplier = {}
         var emptyForm = function(){
             $scope.supplier = {}
@@ -13,7 +13,7 @@
           supplierFactory.getData("addSupplier", JSON.stringify($scope.supplier)).
               then(function(){
                  emptyForm();
-                  $scope.status = supplierFactory.listSupplier;
+                  $scope.messageSuccess = supplierFactory.listSupplier;
               }, function(){
 
               });

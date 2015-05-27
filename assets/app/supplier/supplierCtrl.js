@@ -3,7 +3,6 @@
 		
     var supplierCtrl = function($scope,$routeParams,$location, supplierFactory){
         $scope.respons = supplierFactory;
-		$scope.messageSuccess=false;
 
 		//initial variable for pagination
 		$scope.totalItems = 0;
@@ -20,14 +19,7 @@
                     console.log("Error");
                 });
         };
-		
-		//clear field
-		var clearFields=function(){
-			$scope.supplier.nama="";
-			$scope.supplier.alamat="";
-			$scope.supplier.telp="";
-		}
-		
+
 		//get location
         if($location.path() === "/supplier"){
             getSupplier();
@@ -38,16 +30,7 @@
             supplierFactory.objSupplier = item;
         };
 		
-		//add supplier
-		$scope.simpanSupplier=function(supplier){
-			supplierFactory.getData("addSupplier", JSON.stringify(supplier)).
-				then(function(){
-					$scope.messageSuccess=true;
-					clearFields();
-				}, function(){
-				
-				});
-		}
+
     };
     app.controller("supplierCtrl",["$scope", "$routeParams","$location","supplierFactory", supplierCtrl]);
 

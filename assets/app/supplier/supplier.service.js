@@ -18,7 +18,6 @@
                 .then(function (result) {
                     angular.copy(result.data, listSupplier);
                     deferred.resolve();
-					console.log(result.data);
                 }, function () {
                     deferred.reject();
                 });
