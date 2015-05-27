@@ -1,13 +1,19 @@
 (function(){
     var app = angular.module("app");
-    app.controller("editCustomerCtrl",["$scope","customerFactory",function($scope, customerFactory){
+    app.controller("editCustomerCtrl",["$scope","$location","customerFactory",function($scope,$location, customerFactory){
         $scope.item = customerFactory.objCustomer;
-        console.log(JSON.stringify($scope.item));
-
+        //console.log(JSON.stringify($scope.item));
+        $scope.cancel = function(){
+            $location.path("/customer");
+        };
         $scope.simpan = function(){
             customerFactory.getData("update", JSON.stringify($scope.item)).
                 then(function(){
-                    alert("data telah disimpan");
+                    if(customerFactory.listCustomer==1){
+                        alert("Update Berhasil");
+                        $location.path("/customer");
+                    }
+
                 },function(){});
 
         };

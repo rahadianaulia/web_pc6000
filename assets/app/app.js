@@ -17,7 +17,7 @@
             }).
             when("/supplier/add",{
                 templateUrl:"view/supplier/inputSupplier.html",
-                controller : "supplierCtrl"
+                controller : "addSupplierCtrl"
             }).
             when("/supplier/edit",{
                 templateUrl:"view/supplier/editSupplier.html",
@@ -30,6 +30,10 @@
             when("/customer/edit",{
                 templateUrl:"view/customer/editCustomer.html",
                 controller : "editCustomerCtrl"
+            }).
+            when("/customer/add",{
+                templateUrl:"view/customer/addCustomer.html",
+                controller : "addCustomerCtrl"
             }).
             otherwise({
                 redirectTo : "/home"
