@@ -10,6 +10,5 @@
             $scope.edit = function(item){
                 customerFactory.objCustomer = item;
             };
-            console.log($scope.respon);
     }]);
 }());

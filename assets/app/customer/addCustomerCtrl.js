@@ -1,6 +1,6 @@
 (function(){
     var app = angular.module("app");
-    app.controller("addCustomerCtrl",["$scope","customerFactory", function($scope, customerFactory){
+    app.controller("addCustomerCtrl",["$scope","$location","customerFactory", function($scope,$location, customerFactory){
         $scope.status = 0;
         $scope.customer = {};
         var emptyForm = function(){
