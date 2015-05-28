@@ -21,7 +21,7 @@ if(isset($_POST["action"])){
         echo UpdateCustomer($conn_db, $params);
     }
 }
-//echo GetCustomer($conn_db);
+
 function GetCustomer($cnn){
     $que = "select * from customer";
     $result = mysqli_query($cnn, $que);
