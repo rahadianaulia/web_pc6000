@@ -73,7 +73,7 @@ function DeletePenjualan($cnn,$params){
 }
 function UpdatePenjualan($cnn,$params){
     $obj = json_decode($params);
-    $que = "update penjualan set idcustomer=$obj->idcustomer, totalharga=$obj->totalharga  where no_faktur = ''$obj->no_faktur''";
+    $que = "update penjualan set idcustomer=$obj->idcustomer, totalharga=$obj->totalharga  where no_faktur = '$obj->no_faktur'";
     $result = mysqli_query($cnn, $que);
     mysqli_close($cnn);
     return $result;
