@@ -43,6 +43,9 @@
 				templateUrl : "view/barang/editbarang.html",
 				controller : "editBarangCtrl"
 			}).
+			when("/pembelian/add",{
+				templateUrl : "view/pembelian/inputPembelian.html"
+			}).
             otherwise({
                 redirectTo : "/home"
             })
