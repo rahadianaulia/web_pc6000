@@ -14,37 +14,51 @@
                     <h4>Form Input Pembelian</h4>
                 </div>
                 <div class="panel-body">
-					<form ng-submit="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Tanggal Beli</label>
-								<div class="col-sm-6">
-									<div class="input-group">
-										<input type="text" class="form-control" type="text" datepicker-popup="{{format}}" ng-model="dt" is-open="true" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-										<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Nama Supplier</label>
-								<div class="col-sm-6">
-									<select ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="itemBarang.jenis" name="jenis" id="jenis" class="form-control" required>
-								<!-- <option data-ng-repeat="item in respons.listJenisBarang">{{item.namajenis}}</option> -->
-								<option value="" selected disabled>Jenis Barang</option>
-							</select>
-								</div>
-							</div>
-						</div>
-						
-						<h3>Data Barang</h3>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <form ng-submit="" class="form-horizontal row-border" data-validate="parsley" id="validate-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tanggal Beli</label>
+
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <!--<input type="text" class="form-control" type="text" datepicker-popup="{{format}}" ng-model="dt" is-open="false" datepicker-options="dateOptions" ng-required="true" close-text="Close" />-->
+                                        <!--<input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />-->
+                                        <!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+                                        <input type="text" class="form-control" datepicker-popup="{{format}}"
+                                               ng-model="dt" is-open="opened" datepicker-options="dateOptions"
+                                               ng-required="true" close-text="Close"/>
+                                      <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                                class="fa fa-calendar"></i></button>
+                                      </span>
+
+                                    </div>
+                                    {{dt}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Nama Supplier</label>
+
+                                <div class="col-sm-6">
+                                    <select ng-options="item.namajenis for item in respons.listJenisBarang"
+                                            ng-model="itemBarang.jenis" name="jenis" id="jenis" class="form-control"
+                                            required>
+                                        <!-- <option data-ng-repeat="item in respons.listJenisBarang">{{item.namajenis}}</option> -->
+                                        <option value="" selected disabled>Jenis Barang</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Data Barang</h3>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<link rel='stylesheet' type='text/css' href='assets/css/bootstrap.min.css'/>
+<!--<link rel='stylesheet' type='text/css' href='assets/css/bootstrap.min.css'/>-->
