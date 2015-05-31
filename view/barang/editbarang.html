@@ -37,7 +37,7 @@
 								<!-- <option data-ng-repeat="item in respons.listJenisBarang">{{item.namajenis}}</option> -->
 								<option value="" selected disabled>Jenis Barang</option>
 							</select>
-							<a data-toggle="modal" href="#/barang/add#myModal" class="btn btn-primary btn-xs">Tambah Jenis Barang</a>
+							<a data-toggle="modal" href="#/barang/edit#myModal" class="btn btn-primary btn-xs">Tambah Jenis Barang</a>
                         </div>
                     </div>
 					
@@ -89,4 +89,31 @@
         </div>
     </div>
 </div>
+
+<!-- modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Tambah Jenis Barang</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Jenis Barang</label>
+					<div class="col-sm-6">
+						<input ng-model="jenis.jenisbarang" type="text" placeholder="Jenis Barang" required="required" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button ng-click="tambahJenis(jenis)" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type='text/javascript' src='assets/plugins/bootbox/bootbox.min.js'></script> 
+<script type='text/javascript' src='assets/demo/demo-modals.js'></script> 
 

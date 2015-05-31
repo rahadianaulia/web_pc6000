@@ -14,7 +14,7 @@
           </div>
 		  
           <div class="panel-body">  
-<div class='alert alert-dismissable alert-info' ng-show="messageSuccess">Data Barang berhasil ditambahkan.</div>";	  
+<div class='alert alert-dismissable alert-info' ng-show="messageSuccess">Data Barang berhasil ditambahkan.</div>	  
                 <form ng-submit="simpanBarang(barang)" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Kode Barang</label>
@@ -34,7 +34,7 @@
                         <label class="col-sm-3 control-label">Jenis Barang</label>
                         <div class="col-sm-6">
                             <select ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="barang.jenis" name="jenis" id="jenis" class="form-control" required>
-								<option value="">Jenis Barang</option>
+								<option value="" selected disabled>Jenis Barang</option>
 							</select>
 							<a data-toggle="modal" href="#/barang/add#myModal" class="btn btn-primary btn-xs">Tambah Jenis Barang</a>
                         </div>

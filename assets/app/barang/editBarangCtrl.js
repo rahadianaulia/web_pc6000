@@ -26,6 +26,18 @@
 				});
 		};
 		
+		//tambah jenis barang
+		$scope.tambahJenis=function(jenis){
+			barangFactory.getData("tambahJenis", jenis).
+				then(function(){
+					$scope.jenis.jenisbarang="";
+					alert("data telah ditambah");
+					getDataJenis();
+				}, function(){
+				
+				});
+		};
+		
 		//check location
 		if ($location.path() === "/barang/edit"){
 			getDataJenis();

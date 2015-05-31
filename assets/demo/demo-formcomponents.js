@@ -5,7 +5,7 @@
 $(function() {
 
     //FSEditor
-    $(".fullscreen").fseditor({maxHeight: 500});
+    //$(".fullscreen").fseditor({maxHeight: 500});
 
      // iPhone like button Toggle (uncommented because already activated in demo.js)
      // $('.toggle').toggles({on:true});
