@@ -4,6 +4,7 @@
     var pembelianCtrl = function($scope,$routeParams,$location, pembelianFactory){
         $scope.respons = pembelianFactory;
 		$scope.messageSuccess=false;
+		$scope.showFormInputJenis=false;
 		
 		//initial variable for pagination
 		$scope.totalItems = 0;

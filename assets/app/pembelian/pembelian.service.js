@@ -4,7 +4,7 @@
 
         var listPembelian = [];
         var objPembelian = {};
-		var listJenisPembelian = [];
+		var listJenisBarang = [];
 
         var getData = function (actionMethode, methodeParams) {
             var deferred = $q.defer();
@@ -18,7 +18,7 @@
             })
                 .then(function (result) {
                     angular.copy(result.data, listPembelian);
-					angular.copy(result.data, listJenisPembelian);
+					angular.copy(result.data, listJenisBarang);
                     deferred.resolve();
                 }, function () {
                     deferred.reject();
@@ -32,7 +32,7 @@
             listPembelian: listPembelian,
             objPembelian: objPembelian,
             getData: getData,
-			listJenisPembelian : listJenisPembelian
+			listJenisBarang : listJenisBarang
 
         }
     };
