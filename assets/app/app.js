@@ -44,8 +44,7 @@
 				controller : "editBarangCtrl"
 			}).
 			when("/pembelian/add",{
-				templateUrl : "view/pembelian/inputPembelian.html",
-                controller : "addPembelian"
+				templateUrl : "view/pembelian/inputPembelian.html"
 			}).
             otherwise({
                 redirectTo : "/home"
