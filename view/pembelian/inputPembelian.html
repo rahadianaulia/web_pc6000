@@ -19,8 +19,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Tanggal Beli</label>
 								<div class="col-sm-6">
-									<div class="input-group">
-										<input type="text" class="form-control" type="text" datepicker-popup="{{format}}" ng-model="dt" is-open="true" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+									<div class="input-group date" id="datepicker">
+										<input type="text" class="form-control" id="datepicker"/>
 										<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 									</div>
 								</div>
@@ -47,4 +47,9 @@
 </div>
 
 
-<link rel='stylesheet' type='text/css' href='assets/css/bootstrap.min.css'/>
+<script type='text/javascript' src='assets/js/jquery-1.10.2.min.js'></script> 
+<script type='text/javascript' src='assets/plugins/form-typeahead/typeahead.min.js'></script> 
+<script type='text/javascript' src='assets/plugins/form-autosize/jquery.autosize-min.js'></script> 
+<script type='text/javascript' src='assets/plugins/form-colorpicker/js/bootstrap-colorpicker.min.js'></script> 
+<script type='text/javascript' src='assets/plugins/form-datepicker/js/bootstrap-datepicker.js'></script> 
+<script type='text/javascript' src='assets/demo/demo-formcomponents.js'></script> 
