@@ -2,7 +2,7 @@
  * Created by skylab on 21/05/2015.
  */
 (function(){
-    var app = angular.module("app",["ngRoute","ui.bootstrap"]);
+    var app = angular.module("app",["ngRoute","ui.bootstrap", "myDirective"]);
     var appRoute = function($routeProvider){
         $routeProvider.
             when("/home",{
