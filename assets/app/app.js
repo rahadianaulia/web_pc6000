@@ -2,7 +2,8 @@
  * Created by skylab on 21/05/2015.
  */
 (function(){
-    var app = angular.module("app",["ngRoute","ui.bootstrap", "myDirective"]);
+
+    var app = angular.module("app",["ngRoute","ui.bootstrap","myDirective"]);
     var appRoute = function($routeProvider){
         $routeProvider.
             when("/home",{
@@ -46,6 +47,10 @@
 			when("/barang/edit",{
 				templateUrl : "view/barang/editbarang.html",
 				controller : "editBarangCtrl"
+			}).
+			when("/pembelian",{
+				templateUrl : "view/pembelian/pembelian.html",
+				controller : "pembelianCtrl"
 			}).
 			when("/pembelian/add",{
 				templateUrl : "view/pembelian/inputPembelian.html",
