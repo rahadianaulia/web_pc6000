@@ -22,7 +22,8 @@
 									<label class="col-sm-3 control-label">Tanggal Beli</label>
 									<div class="col-sm-6">
 										<div class="input-group date" id="datepicker">
-											<input ng-model="tanggal" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+											<!-- <input ng-model="tanggal" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" /> -->
+											<boots-datepicker ng-model="tanggal"></boots-datepicker>
 											<span class="input-group-addon"><i class="fa fa-calendar" ng-click="open($event)"></i></span>										
 										</div>
 									</div>
@@ -32,7 +33,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Nama Supplier</label>
 									<div class="col-sm-6">
-										<select ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="itemBarang.jenis" name="jenis" id="jenis" class="form-control" required>
+										<select ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="itemBarang.jenis" id="jenis" class="form-control" required>
 									<!-- <option data-ng-repeat="item in respons.listJenisBarang">{{item.namajenis}}</option> -->
 									<option value="" selected disabled>Jenis Barang</option>
 								</select>
@@ -63,6 +64,17 @@
 									<th>Satuan</th>
 								</tr>
 							</thead>
+							<tbody>
+								<tr data-ng-repeat="itemBarang in listDataBarang track by $index">
+									<td>{{itemBarang.kode}}</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
 						</table>
 						</div>
 				  </div>
@@ -97,7 +109,7 @@
 				<h4 class="modal-title">Input Data Barang</h4>
 			</div>
 			<div class="modal-body">
-				<form ng-submit="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+				<form ng-submit="tambahDataBarang(barang)" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
 						
 						
 						<div class="form-group">
@@ -117,25 +129,23 @@
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Jenis Barang</label>
                         <div class="col-sm-6">
-                            <select ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="barang.jenis" name="jenis" id="jenis" class="form-control" required>
+                            <select ng-disabled="showFormInputJenis" ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="barang.jenis" id="jenis" class="form-control" required>
 								<option value="" selected disabled>Jenis Barang</option>
 							</select>
-							<a data-toggle="modal" ng-click="showFormInputJenis=true" class="btn btn-primary btn-xs">Tambah Jenis Barang</a>
+							<a ng-disabled="showFormInputJenis" data-toggle="modal" ng-click="showFormInputJenis=true" class="btn btn-primary btn-xs">Tambah Jenis Barang</a>
                         
-						</div>
-						<br>
-						<div ng-show="showFormInputJenis">
-							
-							<label class="col-sm-4 control-label">Jenis Barang</label>
-							<div class="col-sm-4">
-								<input ng-model="jenis.jenisbarang" type="text" placeholder="Jenis Barang" required="required" class="form-control">
-							</div>
-							<div class="col-sm-4">
-								<a class="btn-primary btn">Simpan</a>
-							</div>
-						</div>
-						
+						</div>						
                     </div>
+					<div class="form-group" ng-show="showFormInputJenis">
+							
+							<label class="col-sm-3 control-label">Nama Jenis</label>
+							<div class="col-sm-6">
+								<input ng-disabled="!showFormInputJenis" ng-model="jenis.jenisbarang" type="text" placeholder="Nama Jenis" required="required" class="form-control">
+								<a class="btn-primary btn" ng-click="showFormInputJenis=false; simpanJenis(jenis)">Simpan</a>
+								<a class="btn-default btn" ng-click="showFormInputJenis=false">Cancel</a>
+							</div>
+								
+						</div>
 					
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Harga Satuan</label>
@@ -175,7 +185,7 @@
 					<div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div class="btn-toolbar">
-                            <button type="submit" class="btn btn-primary" data-ng-click="">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                             <button type="reset" class="btn-default btn" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
@@ -185,8 +195,3 @@
 		</div>
 	</div>
 </div>
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-<script type='text/javascript' src='assets/js/ui-bootstrap-tpls-0.12.1.min.js'></script>
-<script type='text/javascript' src='assets/plugins/bootbox/bootbox.min.js'></script> 
-<script type='text/javascript' src='assets/demo/demo-modals.js'></script> 
