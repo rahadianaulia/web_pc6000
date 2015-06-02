@@ -62,19 +62,23 @@
 									<th>Jenis Barang</th>
 									<th>Harga Satuan</th>
 									<th>Harga Jual</th>
-									<th>Stock Minimal</th>
+									<th>Jumlah Stock</th>
 									<th>Satuan</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr data-ng-repeat="itemBarang in listDataBarang track by $index">
-									<td>{{itemBarang.kode}}</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+								<tr data-ng-repeat="item in listDataBarang track by $index">
+									<td>{{item.kode}}</td>
+									<td>{{item.nama}}</td>
+									<td>{{item.jenisnama}}</td>
+									<td>{{item.hargasatuan}}</td>
+									<td>{{item.hargajual}}</td>
+									<td>{{item.jumlahstok}}</td>
+									<td>{{item.satuan}}</td>
+								</tr>
+								<tr>
+									<td colspan="6" align="center"><b>Total Pembelian</b></td>
+									<td>Rp. {{totalPembelian}}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -174,9 +178,9 @@
                     </div>
 					
 					<div class="form-group">
-                        <label class="col-sm-3 control-label">Stock Minimal</label>
+                        <label class="col-sm-3 control-label">Jumlah</label>
                         <div class="col-sm-6">
-                            <input ng-model="barang.stokminimal" type="text" placeholder="Stock Minimal" required="required" class="form-control">
+                            <input ng-model="barang.jumlah" type="text" placeholder="Stock Minimal" required="required" class="form-control">
                         </div>
                     </div>
 					
