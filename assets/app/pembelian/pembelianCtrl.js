@@ -6,14 +6,22 @@
 		$scope.messageSuccess=false;
 		$scope.showFormInputJenis=false;
 		$scope.disableJenis=false;
-		
 		$scope.listDataBarang=[];
+		$scope.totalPembelian=0;
+
+		//get totaL pembelian
+		var getTotalPembelian = function(){
+			for (var i=0; i < $scope.listDataBarang.length; i++){
+				$scope.totalPembelian =  +$scope.listDataBarang[i].hargasatuan;
+			}
+		};
 		
 		//tambah data barang
 		$scope.tambahDataBarang = function(barang){
-			$scope.listDataBarang.push(barang);
+			$scope.listDataBarang.push({kode: barang.kode, nama: barang.nama, jenisid: barang.jenis.idjenis, jenisnama: barang.jenis.namajenis, hargasatuan: barang.hargasatuan, hargajual: barang.hargajual, jumlahstok: barang.jumlah, satuan: barang.satuan});
 			clearFieldsBarang();
-		}
+			getTotalPembelian();
+		};
 		
 		//tambah jenis barang
 		$scope.simpanJenis=function(jenis){
@@ -57,6 +65,12 @@
 		//clear fields
 		var clearFieldsBarang=function(){
 			$scope.barang.kode="";
+			$scope.barang.nama="";
+			$scope.barang.jenis="Jenis Barang";
+			$scope.barang.hargasatuan="0";
+			$scope.barang.hargajual="0";
+			$scope.barang.jumlah="0";
+			$scope.barang.satuan="";
 		}
 		
 		//check location
