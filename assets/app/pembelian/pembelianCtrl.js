@@ -5,19 +5,33 @@
         $scope.respons = pembelianFactory;
 		$scope.messageSuccess=false;
 		$scope.showFormInputJenis=false;
+		$scope.disableJenis=false;
+		
+		$scope.listDataBarang=[];
+		
+		//tambah data barang
+		$scope.tambahDataBarang = function(barang){
+			$scope.listDataBarang.push(barang);
+			clearFieldsBarang();
+		}
+		
+		//tambah jenis barang
+		$scope.simpanJenis=function(jenis){
+			pembelianFactory.getData("tambahJenis", jenis).
+				then(function(){
+					$scope.jenis.jenisbarang="";
+					alert("data telah ditambah");
+					getDataJenis();
+				}, function(){
+				
+				});
+		};
 		
 		//initial variable for pagination
 		$scope.totalItems = 0;
 		$scope.currentPage = 1;
 		$scope.maxSize = 5;
 		$scope.numPerPage = 5;
-		
-		$scope.open = function($event) {
-			$event.preventDefault();
-			$event.stopPropagation();
-
-			$scope.opened = true;
-		};
 
 		//get data pembelian
         var getPembelian = function () {
@@ -41,8 +55,8 @@
 		};
 		
 		//clear fields
-		var clearFields=function(){
-		
+		var clearFieldsBarang=function(){
+			$scope.barang.kode="";
 		}
 		
 		//check location
