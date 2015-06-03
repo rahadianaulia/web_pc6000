@@ -1,7 +1,7 @@
 (function(){
     var app = angular.module("app");
 		
-    var supplierCtrl = function($scope,$routeParams,$location, supplierFactory){
+    var supplierCtrl = function($scope,$routeParams,$modal,$location, supplierFactory){
         $scope.respons = supplierFactory;
 
 		//initial variable for pagination
@@ -12,7 +12,7 @@
 
 		//get data supplier
         var getSupplier = function () {
-            supplierFactory.getData("getSupplier", undefined).
+            supplierFactory.getSupplier().
                 then(function () {
 					$scope.totalItems=$scope.respons.listSupplier.length;
                 }, function () {
@@ -29,9 +29,33 @@
         $scope.edit= function(item){
             supplierFactory.objSupplier = item;
         };
-		
+
+        $scope.delete = function(itemToDelete){
+            var modalDialog = $modal.open({
+                templateUrl : "view/modal/confirmDialog.html",
+                controller : "confirmDialogCtrl",
+                size : "sm",
+                backdrop : false,
+                resolve :{
+                    header : function(){
+                        return "Konfirmasi";
+                    },
+                    pesan : function(){
+                        return 'Hapus supplier "' + itemToDelete.nama + '" ?';
+                    }
+                }
+            });
+
+            modalDialog.result.then(function(hasil){
+                supplierFactory.deleteSupplier(JSON.stringify(itemToDelete)).
+                    then(function(){
+                        alert("Data terhapus");
+                        getSupplier();
+                    },function(){});
+            },function(){});
+        };
 
     };
-    app.controller("supplierCtrl",["$scope", "$routeParams","$location","supplierFactory", supplierCtrl]);
+    app.controller("supplierCtrl",["$scope", "$routeParams","$modal","$location","supplierFactory", supplierCtrl]);
 
 }());

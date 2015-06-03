@@ -5,19 +5,19 @@ if(isset($_POST["params"])){
 }
 if(isset($_POST["action"])){
     $action = $_POST["action"];
-    if($action == "getSupplier"){
+    if($action == "getAll"){
         echo GetSupplier($conn_db);
     }
-    if($action == "getSupplierById"){
+    if($action == "getById"){
         echo GetSupplierById($conn_db,$params);
     }
-    if($action == "addSupplier"){
+    if($action == "add"){
         echo AddSupplier($conn_db,$params);
     }
-    if($action == "deleteSupplier"){
+    if($action == "delete"){
         echo DeleteSupplier($conn_db,$params);
     }
-    if($action == "updateSupplier"){
+    if($action == "update"){
         echo UpdateSupplier($conn_db, $params);
     }
 }

@@ -23,7 +23,7 @@
                         return "Konfirmasi";
                     },
                     pesan : function(){
-                        return "Hapus customer " + itemToDelete.nama + " ?";
+                        return 'Hapus customer "' + itemToDelete.nama + '" ?';
                     }
                 }
             });

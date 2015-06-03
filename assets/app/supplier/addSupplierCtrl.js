@@ -10,7 +10,7 @@
             $location.path("/supplier");
         };
         $scope.save = function(){
-          supplierFactory.getData("addSupplier", JSON.stringify($scope.supplier)).
+          supplierFactory.addSupplier( JSON.stringify($scope.supplier)).
               then(function(){
                  emptyForm();
                   $scope.messageSuccess = supplierFactory.listSupplier;
