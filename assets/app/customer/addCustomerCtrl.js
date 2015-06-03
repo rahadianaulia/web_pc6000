@@ -10,7 +10,7 @@
             $location.path("/customer");
         };
         $scope.save = function(){
-            customerFactory.getData("add", JSON.stringify($scope.customer)).
+            customerFactory.addCustomer(JSON.stringify($scope.customer)).
                 then(function(){
                     $scope.status = customerFactory.listCustomer;
                     emptyForm();
