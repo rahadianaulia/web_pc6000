@@ -1,7 +1,7 @@
 (function(){
     var app = angular.module("app");
-    app.controller("addSupplierCtrl",["$scope","$location","supplierFactory", function($scope,$location, supplierFactory){
-        $scope.messageSuccess = 0;
+    app.controller("addSupplierCtrl",["$scope","$location","supplierFactory","toaster",
+        function($scope,$location, supplierFactory, toaster){
         $scope.supplier = {}
         var emptyForm = function(){
             $scope.supplier = {}
@@ -12,8 +12,8 @@
         $scope.save = function(){
           supplierFactory.addSupplier( JSON.stringify($scope.supplier)).
               then(function(){
+                  toaster.pop("success", "Tambah Supplier", '"' + $scope.supplier.nama + '" berhasil ditambahkan.');
                  emptyForm();
-                  $scope.messageSuccess = supplierFactory.listSupplier;
               }, function(){
 
               });

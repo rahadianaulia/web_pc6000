@@ -1,7 +1,7 @@
 (function(){
     var app = angular.module("app");
 		
-    var supplierCtrl = function($scope,$routeParams,$modal,$location, supplierFactory){
+    var supplierCtrl = function($scope,$routeParams,$modal,$location, supplierFactory, toaster){
         $scope.respons = supplierFactory;
 
 		//initial variable for pagination
@@ -26,8 +26,20 @@
         }
 		
 		//edit supplier
-        $scope.edit= function(item){
-            supplierFactory.objSupplier = item;
+        $scope.edit= function(itemToEdit){
+            var editDialog = $modal.open({
+                templateUrl:"view/supplier/editSupplierModal.html",
+                controller : "editSupplierCtrl",
+                backdrop : false,
+                resolve : {
+                    item : function(){
+                        return itemToEdit;
+                    }
+                }
+            });
+            editDialog.result.then(function(){
+                getSupplier();
+            }, function(){});
         };
 
         $scope.delete = function(itemToDelete){
@@ -49,13 +61,13 @@
             modalDialog.result.then(function(hasil){
                 supplierFactory.deleteSupplier(JSON.stringify(itemToDelete)).
                     then(function(){
-                        alert("Data terhapus");
+                        toaster.pop("succes", "Hapus Supplier", '"' + itemToDelete.nama + '" sudah terhapus');
                         getSupplier();
                     },function(){});
             },function(){});
         };
 
     };
-    app.controller("supplierCtrl",["$scope", "$routeParams","$modal","$location","supplierFactory", supplierCtrl]);
+    app.controller("supplierCtrl",["$scope", "$routeParams","$modal","$location","supplierFactory","toaster", supplierCtrl]);
 
 }());

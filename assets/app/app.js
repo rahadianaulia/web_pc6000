@@ -20,17 +20,9 @@
                 templateUrl:"view/supplier/inputSupplier.html",
                 controller : "addSupplierCtrl"
             }).
-            when("/supplier/edit",{
-                templateUrl:"view/supplier/editSupplier.html",
-                controller : "editSupplierCtrl"
-            }).
             when("/customer",{
                 templateUrl:"view/customer/customer.html",
                 controller : "customerCtrl"
-            }).
-            when("/customer/edit",{
-                templateUrl:"view/customer/editCustomer.html",
-                controller : "editCustomerCtrl"
             }).
             when("/customer/add",{
                 templateUrl:"view/customer/addCustomer.html",
