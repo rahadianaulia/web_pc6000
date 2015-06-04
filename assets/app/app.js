@@ -3,7 +3,7 @@
  */
 (function(){
 
-    var app = angular.module("app",["ngRoute","ui.bootstrap","myDirective"]);
+    var app = angular.module("app",["ngRoute","ui.bootstrap","myDirective", "toaster"]);
     var appRoute = function($routeProvider){
         $routeProvider.
             when("/home",{

@@ -1,6 +1,6 @@
 (function(){
     var app = angular.module("app");
-    app.controller("addCustomerCtrl",["$scope","$location","customerFactory", function($scope,$location, customerFactory){
+    app.controller("addCustomerCtrl",["$scope","$location","toaster","customerFactory", function($scope,$location, toaster,customerFactory){
         $scope.status = 0;
         $scope.customer = {};
         var emptyForm = function(){
@@ -13,7 +13,9 @@
             customerFactory.addCustomer(JSON.stringify($scope.customer)).
                 then(function(){
                     $scope.status = customerFactory.listCustomer;
+                    toaster.pop("success", "Info", '"' + $scope.customer.nama + '" berhasil disimpan');
                     emptyForm();
+
                 },function(){});
         };
     }]);

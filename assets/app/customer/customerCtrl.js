@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module("app");
-    app.controller("customerCtrl", ["$scope","$modal", "customerFactory", function ($scope,$modal, customerFactory) {
+    app.controller("customerCtrl", ["$scope","$modal","toaster" , "customerFactory", function ($scope,$modal,toaster, customerFactory) {
         $scope.respon = customerFactory;
         var init = function () {
             customerFactory.getCustomer().then(function () {
@@ -31,12 +31,16 @@
             modalDialog.result.then(function(hasil){
                 customerFactory.deleteCustomer(JSON.stringify(itemToDelete)).
                     then(function(){
-                        alert("Data terhapus");
+                        toaster.pop("success", "Info", itemToDelete.nama  + " telah terhapus");
                         init();
                     },function(){});
             },function(){});
         };
 
+        $scope.popUp = function(){
+            toaster.pop('error', "tittle", "Karambiacukia");
+            //alert("karambiacukia");
+        };
 
     }]);
 }());

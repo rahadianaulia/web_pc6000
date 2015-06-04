@@ -1,6 +1,6 @@
 (function(){
     var app = angular.module("app");
-    app.controller("editCustomerCtrl",["$scope","$location","customerFactory",function($scope,$location, customerFactory){
+    app.controller("editCustomerCtrl",["$scope","$location","toaster","customerFactory",function($scope,$location,toaster, customerFactory){
 
         if(customerFactory.objCustomer.idcustomer == undefined){
             $location.path("/customer");
@@ -13,8 +13,7 @@
             customerFactory.editCustomer(JSON.stringify($scope.item)).
                 then(function(){
                     if(customerFactory.respon==1){
-                        console.log(customerFactory.respon);
-                        alert("Update Berhasil");
+                        toaster.pop("success", "Info", 'Data telah terupdate');
                         $location.path("/customer");
                     }
 
