@@ -33,7 +33,7 @@
                             <td>{{item.nama}}</td>
                             <td>{{item.alamat}}</td>
                             <td>
-                                <a class="btn btn-primary btn-xs" data-ng-click="edit(item)" href="#/customer/edit">Edit</a>
+                                <a class="btn btn-primary btn-xs" data-ng-click="editCustomer(item)">Edit</a>
                                 <button class="btn btn-danger btn-xs" data-ng-click="delete(item)">Delete</button>
                             </td>
                         </tr>
@@ -42,14 +42,13 @@
                 </div>
                 <div class="panel-footer">
                     <a href="#/customer/add" class="btn btn-primary">Add</a>
-                    <button class="btn btn-primary" data-ng-click="popUp()">Notify</button>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
-<toaster-container></toaster-container>
+
 <!-- container -->
 
 

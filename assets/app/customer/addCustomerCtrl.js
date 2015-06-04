@@ -13,7 +13,7 @@
             customerFactory.addCustomer(JSON.stringify($scope.customer)).
                 then(function(){
                     $scope.status = customerFactory.listCustomer;
-                    toaster.pop("success", "Info", '"' + $scope.customer.nama + '" berhasil disimpan');
+                    toaster.pop("success", "Tambah Customer", '"' + $scope.customer.nama + '" berhasil disimpan');
                     emptyForm();
 
                 },function(){});
