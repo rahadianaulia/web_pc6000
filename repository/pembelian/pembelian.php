@@ -10,9 +10,33 @@ if(isset($_POST["action"])){
 	}
 	if ($action == "getJenis"){
 		echo GetJenis($conn_db);
-	}    
+	}
+	if ($action == "getSupplier"){
+		echo GetSupplier($conn_db);
+	}
+	if ($action == "tambahPembelian"){
+		echo TambahPembelian($conn_db, $params);
+	}
 }
 
+function TambahPembelian($cnn, $params){
+	$param=json_decode($params);
+	$que="insert into masterbeli values(NULL, '$param->tanggal', $param->idSupplier, $param->totalBeli)";
+	$result=mysqli_query($cnn, $que);
+	mysqli_close($cnn);
+	return $result;
+}
+
+function GetSupplier($cnn){
+	$que="select * from suplier";
+	$result = mysqli_query($cnn, $que);
+	$arr = [];
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arr[] = $rows;
+	}
+	mysqli_close($cnn);
+	return json_encode($arr);
+}
 
 function TambahJenis($cnn,$params){
 	$param=array_shift($params);

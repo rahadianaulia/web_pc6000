@@ -3,11 +3,21 @@
 		
     var pembelianCtrl = function($scope,$routeParams,$location, pembelianFactory){
         $scope.respons = pembelianFactory;
-		$scope.messageSuccess=false;
-		$scope.showFormInputJenis=false;
-		$scope.disableJenis=false;
-		$scope.listDataBarang=[];
-		$scope.totalPembelian=0;
+		$scope.messageSuccess = false;
+		$scope.showFormInputJenis = false;
+		$scope.disableJenis = false;
+		$scope.listDataBarang = [];
+		$scope.totalPembelian = 0;
+
+		//get data supplier
+		var getSupplier = function(){
+			pembelianFactory.getDataSupplier("getSupplier").
+                then(function () {
+
+                }, function () {
+                    
+                });
+		};
 
 		//get totaL pembelian
 		var getTotalPembelian = function(){
@@ -18,9 +28,20 @@
 		
 		//tambah data barang
 		$scope.tambahDataBarang = function(barang){
-			$scope.listDataBarang.push({kode: barang.kode, nama: barang.nama, jenisid: barang.jenis.idjenis, jenisnama: barang.jenis.namajenis, hargasatuan: barang.hargasatuan, hargajual: barang.hargajual, jumlahstok: barang.jumlah, satuan: barang.satuan});
+			$scope.listDataBarang.push({
+				kode: barang.kode, 
+				nama: barang.nama, 
+				jenisid: barang.jenis.idjenis, 
+				jenisnama: barang.jenis.namajenis, 
+				hargasatuan: barang.hargasatuan, 
+				hargajual: barang.hargajual, 
+				jumlahstok: barang.jumlahstok,
+				stockmin: barang.stockmin, 
+				satuan: barang.satuan
+			});
 			clearFieldsBarang();
 			getTotalPembelian();
+			$scope.messageSuccess=true;
 		};
 		
 		//tambah jenis barang
@@ -69,8 +90,9 @@
 			$scope.barang.jenis="Jenis Barang";
 			$scope.barang.hargasatuan="0";
 			$scope.barang.hargajual="0";
-			$scope.barang.jumlah="0";
+			$scope.barang.jumlahstok="0";
 			$scope.barang.satuan="";
+			$scope.barang.stockmin="0";
 		}
 		
 		//check location
@@ -78,6 +100,7 @@
             getPembelian();
         } else if ($location.path() === "/pembelian/add"){
 			getDataJenis();
+			getSupplier();
 		}
 		
 		//edit pembelian
@@ -86,15 +109,31 @@
         };
 		
 		//simpan pembelian
-		$scope.simpanPembelian=function(pembelian){
-			pembelianFactory.getData("addPembelian", JSON.stringify(pembelian)).
+		$scope.simpanPembelian=function(pembelian, dataBarang, totalBeli){
+			var dataPembelian=[];
+
+			for (var i=0; i<dataBarang.length; i++){
+				dataPembelian = {
+					"tanggal": pembelian.tanggal, 
+					"idSupplier": pembelian.supplier.idsuplier,
+					"kodeBarang": dataBarang[i].kode,
+					"namaBarang": dataBarang[i].nama,
+					"idJenis": dataBarang[i].jenisid,
+					"hargaSatuan": dataBarang[i].hargasatuan,
+					"hargaJual": dataBarang[i].hargajual,
+					"jumlah": dataBarang[i].jumlahstok,
+					"stockMin": dataBarang[i].stockmin,
+					"satuan": dataBarang[i].satuan,
+					"totalBeli": totalBeli
+				};
+
+				pembelianFactory.getData("tambahPembelian", JSON.stringify(dataPembelian)).
 				then(function(){
-					getDataJenis();
-					$scope.messageSuccess=true;
-					clearFields();
+
 				}, function(){
 				
 				});
+			}			
 		};
     };
     app.controller("pembelianCtrl",["$scope", "$routeParams","$location","pembelianFactory", pembelianCtrl]);

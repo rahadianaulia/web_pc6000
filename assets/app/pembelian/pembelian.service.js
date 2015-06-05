@@ -5,10 +5,12 @@
         var listPembelian = [];
         var objPembelian = {};
 		var listJenisBarang = [];
+        var listSupplier = [];
+
+        var url = "repository/pembelian/pembelian.php";
 
         var getData = function (actionMethode, methodeParams) {
             var deferred = $q.defer();
-            var url = "repository/pembelian/pembelian.php";
             var dataload = $.param({action: actionMethode, params: methodeParams});
             $http({
                 url: url,
@@ -28,12 +30,31 @@
             return deferred.promise;
         };
 
+        var getDataSupplier = function (actionMethode){
+            var deferred = $q.defer();
+            var dataload = $.param({action: actionMethode});
+            $http({
+                url: url,
+                method: "post",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                data: dataload
+            }).then(function (result) {
+                    angular.copy(result.data, listSupplier);
+                    deferred.resolve();
+                }, function () {
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        }
+
         return {
             listPembelian: listPembelian,
             objPembelian: objPembelian,
             getData: getData,
-			listJenisBarang : listJenisBarang
-
+            getDataSupplier : getDataSupplier,
+			listJenisBarang : listJenisBarang,
+            listSupplier : listSupplier
         }
     };
     app.factory("pembelianFactory", ["$http", "$q", pembelianFactory]);
