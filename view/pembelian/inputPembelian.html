@@ -15,7 +15,7 @@
                 </div>
                 <div class="panel-body">
 								
-					<form ng-submit="simpanPembelian(pembelian, listDataBarang, totalPembelian)" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+					<form ng-submit="simpanPembelian(pembelian, listDataBarang, getTotalPembelian())" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
 					
 							<div class="form-group">
 								<div class="col-md-6">
@@ -78,7 +78,7 @@
 								</tr>
 								<tr>
 									<td colspan="7" align="center"><b>Total Pembelian</b></td>
-									<td>Rp. {{totalPembelian}}</td>
+									<td>Rp. {{getTotalPembelian()}}</td>
 								</tr>
 							</tbody>
 						</table>

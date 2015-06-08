@@ -7,7 +7,15 @@
 		$scope.showFormInputJenis = false;
 		$scope.disableJenis = false;
 		$scope.listDataBarang = [];
-		$scope.totalPembelian = 0;
+
+		//get total pembelian
+		$scope.getTotalPembelian = function(){
+			var total=0;
+			for (var i=0; i < $scope.listDataBarang.length; i++){
+				total += parseInt($scope.listDataBarang[i].hargasatuan);
+			}
+			return total;
+		};
 
 		//get data supplier
 		var getSupplier = function(){
@@ -17,13 +25,6 @@
                 }, function () {
                     
                 });
-		};
-
-		//get totaL pembelian
-		var getTotalPembelian = function(){
-			for (var i=0; i < $scope.listDataBarang.length; i++){
-				$scope.totalPembelian =  +$scope.listDataBarang[i].hargasatuan;
-			}
 		};
 		
 		//tambah data barang
@@ -40,7 +41,7 @@
 				satuan: barang.satuan
 			});
 			clearFieldsBarang();
-			getTotalPembelian();
+			$scope.getTotalPembelian();
 			$scope.messageSuccess=true;
 		};
 		
@@ -110,30 +111,52 @@
 		
 		//simpan pembelian
 		$scope.simpanPembelian=function(pembelian, dataBarang, totalBeli){
-			var dataPembelian=[];
+			var masterBeli = {
+				"tanggal": pembelian.tanggal,
+				"idSupplier": pembelian.supplier.idsuplier,
+				"totalBeli": totalBeli
+			};
+
+			pembelianFactory.getData("tambahPembelian", JSON.stringify(masterBeli)).
+				then(function(){
+
+				}, function(){
+				
+				});
 
 			for (var i=0; i<dataBarang.length; i++){
-				dataPembelian = {
-					"tanggal": pembelian.tanggal, 
-					"idSupplier": pembelian.supplier.idsuplier,
+				var dataPembelian = {
+					"kodeBarang": dataBarang[i].kode,
+					"hargaSatuan": dataBarang[i].hargasatuan,
+					"jumlah": dataBarang[i].jumlahstok,
+					"satuan": dataBarang[i].satuan
+				};
+
+				var masterBarang = {
 					"kodeBarang": dataBarang[i].kode,
 					"namaBarang": dataBarang[i].nama,
 					"idJenis": dataBarang[i].jenisid,
 					"hargaSatuan": dataBarang[i].hargasatuan,
 					"hargaJual": dataBarang[i].hargajual,
 					"jumlah": dataBarang[i].jumlahstok,
-					"stockMin": dataBarang[i].stockmin,
 					"satuan": dataBarang[i].satuan,
-					"totalBeli": totalBeli
+					"stockMin": dataBarang[i].stockmin
 				};
 
-				pembelianFactory.getData("tambahPembelian", JSON.stringify(dataPembelian)).
+				pembelianFactory.getData("tambahMasterBarang", JSON.stringify(masterBarang)).
 				then(function(){
 
 				}, function(){
 				
 				});
-			}			
+
+				pembelianFactory.getData("tambahDetailPembelian", JSON.stringify(dataPembelian)).
+				then(function(){
+					
+				}, function(){
+				
+				});
+			}		
 		};
     };
     app.controller("pembelianCtrl",["$scope", "$routeParams","$location","pembelianFactory", pembelianCtrl]);

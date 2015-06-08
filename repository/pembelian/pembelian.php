@@ -17,6 +17,28 @@ if(isset($_POST["action"])){
 	if ($action == "tambahPembelian"){
 		echo TambahPembelian($conn_db, $params);
 	}
+	if ($action == "tambahDetailPembelian"){
+		echo TambahDetailPembelian($conn_db, $params);
+	}
+	if ($action == "tambahMasterBarang"){
+		echo TambahMasterBarang($conn_db, $params);
+	}
+}
+
+function TambahMasterBarang($cnn, $params){
+	$param=json_decode($params);
+	$que="insert into masterbarang values('$param->kodeBarang', '$param->namaBarang', $param->idJenis, $param->hargaSatuan, $param->hargaJual, $param->jumlah, '$param->satuan', $param->stockMin)";
+	$result=mysqli_query($cnn, $que);
+	mysqli_close($cnn);
+	return $result;
+}
+
+function TambahDetailPembelian($cnn, $params){
+	$param=json_decode($params);
+	$que="insert into detailbeli values((SELECT MAX(idbeli) FROM masterbeli), '$param->kodeBarang', $param->jumlah, $param->hargaSatuan, '$param->satuan')";
+	$result=mysqli_query($cnn, $que);
+	mysqli_close($cnn);
+	return $result;
 }
 
 function TambahPembelian($cnn, $params){
