@@ -16,7 +16,7 @@
     <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'>
 
     <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'>
-	
+	<link href="assets/css/toaster.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
     <!--[if lt IE 9]>
@@ -646,6 +646,7 @@
 <div id="page-content">
     <div id='wrap'>
         <div ng-view></div>
+        <toaster-container toaster-options="{'position-class': 'toast-bottom-right'}" ></toaster-container>
     </div>
 </div>
 
@@ -679,6 +680,8 @@
 <script type='text/javascript' src='assets/js/bootstrap.min.js'></script>
 <script type='text/javascript' src='assets/plugins/form-datepicker/js/bootstrap-datepicker.js'></script>
 <script type='text/javascript' src='assets/js/ui-bootstrap-tpls-0.12.1.min.js'></script>
+<script type="text/javascript" src="assets/js/toaster.min.js"></script>
+
 <script type="text/javascript" src="assets/app/directive/bootsDatepicker.js"></script>
 <script type='text/javascript' src='assets/js/enquire.js'></script>
 <script type='text/javascript' src='assets/js/jquery.cookie.js'></script>
@@ -686,17 +689,22 @@
 <script type='text/javascript' src='assets/js/application.js'></script>
 <script type='text/javascript' src='assets/app/app.js'></script>
 <script type='text/javascript' src='assets/app/app.controller.js'></script>
+<script type='text/javascript' src='assets/app/app.filter.js'></script>
 <script type='text/javascript' src='assets/app/supplier/supplier.service.js'></script>
 <script type='text/javascript' src='assets/app/supplier/supplierCtrl.js'></script>
 <script type='text/javascript' src='assets/app/supplier/editSupplierCtrl.js'></script>
+<script type='text/javascript' src='assets/app/supplier/addSupplierCtrl.js'></script>
 <script type='text/javascript' src='assets/app/customer/customerCtrl.js'></script>
 <script type='text/javascript' src='assets/app/customer/customerService.js'></script>
 <script type='text/javascript' src='assets/app/customer/editCustomerCtrl.js'></script>
+<script type='text/javascript' src='assets/app/customer/addCustomerCtrl.js'></script>
 <script type='text/javascript' src='assets/app/barang/barang.service.js'></script>
 <script type='text/javascript' src='assets/app/barang/barangCtrl.js'></script>
 <script type='text/javascript' src='assets/app/barang/editBarangCtrl.js'></script>
 <script type='text/javascript' src='assets/app/pembelian/pembelianCtrl.js'></script>
 <script type='text/javascript' src='assets/app/pembelian/pembelian.service.js'></script>
- 
+<script type='text/javascript' src='assets/app/modalDialog/confirmDialogCtrl.js'></script>
+
+
 </body>
 </html>

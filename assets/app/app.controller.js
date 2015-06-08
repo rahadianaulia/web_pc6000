@@ -5,7 +5,7 @@
     var app = angular.module("app");
     var appCtrl = function ($scope, $location) {
         $scope.isActive = function (viewLocation) {
-            return viewLocation === $location.path();
+            return $location.path().startsWith(viewLocation);
         };
 
 

@@ -1,5 +1,7 @@
 (function(){
+
     var app = angular.module("myDirective",[]);
+
     app.directive("bootsDatepicker",function(){
         return{
             restrict : "EA",
@@ -10,7 +12,9 @@
                 el.datepicker(
                     {
                         autoclose: true,
+
                         format: "yyyy-mm-dd"
+
                     }
                 );
             }

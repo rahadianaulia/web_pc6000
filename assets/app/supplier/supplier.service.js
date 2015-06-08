@@ -3,9 +3,10 @@
     var supplierFactory = function ($http, $q) {
 
         var listSupplier = [];
+        var respon = [];
         var objSupplier = {};
 
-        var getData = function (actionMethode, methodeParams) {
+        var request = function (actionMethode, methodeParams) {
             var deferred = $q.defer();
             var url = "repository/supplier/supplier.php";
             var dataload = $.param({action: actionMethode, params: methodeParams});
@@ -16,9 +17,13 @@
                 data: dataload
             })
                 .then(function (result) {
-                    angular.copy(result.data, listSupplier);
+                    if (actionMethode == "getAll" || actionMethode == "getById") {
+                        angular.copy(result.data, listSupplier);
+                    } else {
+                        angular.copy(result.data, respon);
+                    }
+
                     deferred.resolve();
-					console.log(result.data);
                 }, function () {
                     deferred.reject();
                 });
@@ -27,10 +32,31 @@
             return deferred.promise;
         };
 
+        var getSupplier = function () {
+            return request("getAll", undefined);
+        };
+        var getSupplierById = function (params) {
+            return request("getById", params);
+        };
+        var addSupplier = function (params) {
+            return request("add", params);
+        };
+        var deleteSupplier = function (params) {
+            return request("delete", params);
+        };
+        var editSupplier = function (params) {
+            return request("update", params);
+        };
+
         return {
             listSupplier: listSupplier,
             objSupplier: objSupplier,
-            getData: getData
+            respon: respon,
+            getSupplier: getSupplier,
+            getSupplierById : getSupplierById,
+            addSupplier : addSupplier,
+            deleteSupplier : deleteSupplier,
+            editSupplier : editSupplier
 
         }
     };

@@ -1,0 +1,39 @@
+<div class="modal-body">
+    <div class="panel panel-grape">
+        <div class="panel-heading">
+            <h4><b>{{judul}}</b></h4>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal row-border" data-validate="parsley" id="validate-form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">ID Customer</label>
+
+                    <div class="col-sm-6">
+                        <label class="form-control">{{item.idcustomer}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Nama Customer</label>
+
+                    <div class="col-sm-6">
+                        <input ng-model="item.nama" type="text" placeholder="Nama Supplier" required="required"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Alamat</label>
+
+                    <div class="col-sm-6">
+                        <input ng-model="item.alamat" type="text" placeholder="Alamat" required="required"
+                               class="form-control">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-primary" ng-click="simpan()">Simpan</button>
+            <button class="btn btn-danger" ng-click="cancel()">Batal</button>
+        </div>
+    </div>
+
+</div>
