@@ -48,6 +48,10 @@
 				templateUrl : "view/pembelian/inputPembelian.html",
 				controller : "pembelianCtrl"
 			}).
+            when("/perbaikan",{
+                templateUrl : "view/perbaikan/perbaikan.html",
+                controller : "perbaikanCtrl"
+            }).
             otherwise({
                 redirectTo : "/home"
             })

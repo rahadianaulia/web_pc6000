@@ -24,6 +24,7 @@
                             <th data-ng-hide="true">Id</th>
                             <th>Nama</th>
                             <th>Alamat</th>
+                            <th>No. Handphone</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -32,6 +33,7 @@
                             <td data-ng-hide="true">{{item.idcustomer}}</td>
                             <td>{{item.nama}}</td>
                             <td>{{item.alamat}}</td>
+                            <td>{{item.no_hp}}</td>
                             <td>
                                 <a class="btn btn-primary btn-xs" data-ng-click="editCustomer(item)">Edit</a>
                                 <button class="btn btn-danger btn-xs" data-ng-click="delete(item)">Delete</button>

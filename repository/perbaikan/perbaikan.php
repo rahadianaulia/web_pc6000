@@ -15,14 +15,17 @@ if(isset($_POST["action"])){
     if($action == "getByTglKeluar"){
         echo GetPerbaikanByTglMasuk($conn_db,$params);
     }
+    if($action == "getByStatusTglMasuk"){
+        echo GetPerbaikanByStatus($conn_db,$params);
+    }
     if($action == "add"){
         echo AddPerbaikan($conn_db,$params);
     }
     if($action == "delete"){
         echo DeletePerbaikan($conn_db,$params);
     }
-    if($action == "selesaiPerbaikan"){
-        echo SelesaiPerbaikan($conn_db, $params);
+    if($action == "update"){
+        echo UpdatePerbaikan($conn_db, $params);
     }
     if($action == "edit"){
         echo EditPerbaikan($conn_db, $params);
@@ -42,7 +45,7 @@ function GetPerbaikan($cnn){
 
 function GetPerbaikanByTglMasuk($cnn,$params){
     $param = json_decode($params);
-    $que = "select * from customer where tglmasuk BETWEEN $param->tglMasukAwal and $param->tglMasukAkhir";
+    $que = "select * from perbaikan where tglmasuk BETWEEN $param->tglMasukAwal and $param->tglMasukAkhir";
     $result = mysqli_query($cnn, $que);
     $rows = mysqli_fetch_array($result,MYSQLI_ASSOC);
     mysqli_close($cnn);
@@ -64,11 +67,12 @@ function AddPerbaikan($cnn,$params){
     return $result;
 }
 
-function SelesaiPerbaikan($cnn,$params){
+function UpdatePerbaikan($cnn,$params){
     $obj = json_decode($params);
     $que = "update perbaikan set tglselesai='$obj->tglselesai',
-            keterangan='$obj->keteranggan',
-            biayaperbaikan = $obj->biayaperbaikan
+            status='$obj->status',
+            keterangankembali = '$obj->keterangankembali',
+            total = $obj->total
             where idperbaikan = $obj->idperbaikan";
     $result = mysqli_query($cnn, $que);
     mysqli_close($cnn);
@@ -88,6 +92,15 @@ function EditPerbaikan($cnn,$params){
     $result = mysqli_query($cnn, $que);
     mysqli_close($cnn);
     return $result;
+}
+
+function getByStatusTglMasuk($cnn, $params){
+    $param = json_decode($params);
+    $que = "select * from perbaikan where status = '$param->status' and tglmasuk = '$param->tglmasuk'";
+    $result = mysqli_query($cnn, $que);
+    $rows = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    mysqli_close($cnn);
+    return json_encode($rows);
 }
 
 ?>

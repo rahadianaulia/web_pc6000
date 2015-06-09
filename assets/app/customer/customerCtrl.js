@@ -30,7 +30,7 @@
             var modalDialog = $modal.open({
                 templateUrl : "view/modal/confirmDialog.html",
                 controller : "confirmDialogCtrl",
-                size : "sm",
+                //size : "sm",
                 backdrop : false,
                 resolve :{
                     header : function(){
