@@ -23,6 +23,34 @@ if(isset($_POST["action"])){
 	if ($action == "tambahMasterBarang"){
 		echo TambahMasterBarang($conn_db, $params);
 	}
+	if ($action == "getDataBarang"){
+		echo GetDataBarang($conn_db);
+	}
+	if ($action == "getPembelian"){
+		echo GetPembelian($conn_db);
+	}
+}
+
+function GetPembelian($cnn){
+	$que="select masterbeli.idbeli, masterbeli.tglbeli, masterbeli.idsuplier, suplier.nama, masterbeli.totalbeli from masterbeli join suplier on masterbeli.idsuplier=suplier.idsuplier";
+	$result = mysqli_query($cnn, $que);
+	$arr = [];
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arr[] = $rows;
+	}
+	mysqli_close($cnn);
+	return json_encode($arr);
+}
+
+function GetDataBarang($cnn){
+	$que="select masterbarang.idbarang, masterbarang.namabarang, masterbarang.idjenis, jenisbarang.namajenis, masterbarang.hargasatuan, masterbarang.hargajual, masterbarang.jumlahstock, masterbarang.satuan, masterbarang.stockmin from masterbarang join jenisbarang on masterbarang.idjenis=jenisbarang.idjenis";
+	$result = mysqli_query($cnn, $que);
+	$arr = [];
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arr[] = $rows;
+	}
+	mysqli_close($cnn);
+	return json_encode($arr);
 }
 
 function TambahMasterBarang($cnn, $params){

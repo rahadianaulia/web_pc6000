@@ -24,7 +24,7 @@
 									<div class="col-sm-6">
 										<div class="input-group date" id="datepicker">
 											<!-- <input ng-model="tanggal" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" /> -->
-											<boots-datepicker ng-model="pembelian.tanggal" required></boots-datepicker>
+											<boots-datepicker placeholder="Tanggal Beli" ng-model="pembelian.tanggal" required></boots-datepicker>
 											<span class="input-group-addon"><i class="fa fa-calendar" ng-click="open($event)"></i></span>										
 										</div>
 									</div>
@@ -34,10 +34,10 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Nama Supplier</label>
 									<div class="col-sm-6">
-										<select ng-options="item.nama for item in respons.listSupplier" ng-model="pembelian.supplier" id="jenis" class="form-control" required>
-									<!-- <option data-ng-repeat="item in respons.listJenisBarang">{{item.namajenis}}</option> -->
-									<option value="" selected disabled>Nama Supplier</option>
-								</select>
+										<!-- <select ng-options="item.nama for item in respons.listSupplier" ng-model="pembelian.supplier" id="jenis" class="form-control" required>
+											<option value="" selected disabled>Nama Supplier</option>
+										</select> -->
+										<input type="text" placeholder="Nama Supplier" ng-model="pembelian.supplier" typeahead="item as item.nama for item in respons.listSupplier | filter:$viewValue | limitTo:8" class="form-control"> 
 									</div>
 								</div>
 
@@ -121,27 +121,33 @@
 			</div>
 			<div class="modal-body">
 				<form ng-submit="tambahDataBarang(barang)" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
-						
-						
-						<div class="form-group">
-							<div class='alert alert-dismissable alert-info' ng-show="messageSuccess">Data Barang telah ditambahkan.</div>
+											
+					<div class="form-group">
+						<div class='alert alert-dismissable alert-info' ng-show="messageSuccess">Data Barang telah ditambahkan.</div>
                         <label class="col-sm-3 control-label">Kode Barang</label>
                         <div class="col-sm-6">
-                            <input ng-model="barang.kode" type="text" placeholder="Kode Barang" required="required" class="form-control">
+                        	<input typeahead-on-select="cariBarang($item)" typeahead="item.idbarang as item.namabarang for item in respons.listBarang | filter:$viewValue | limitTo:8" ng-model="barang.kode" type="text" placeholder="Nama Barang" required="required" class="form-control">
                         </div>
                     </div>
+
+                    <!-- <div class="form-group">
+                    	<label class="col-sm-3 control-label">Kode Barang</label>
+                        <div class="col-sm-6">
+                            <input ng-model="barang.kode.idbarang" type="text" placeholder="Kode Barang" required="required" class="form-control">
+                        </div>
+                    </div> -->
 					
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Nama Barang</label>
                         <div class="col-sm-6">
-                            <input ng-model="barang.nama" type="text" placeholder="Nama Barang" required="required" class="form-control">
+                        	<input type="text" placeholder="Nama Barang" ng-model="barang.nama" class="form-control">
                         </div>
                     </div>
 					
 					<div class="form-group">
                         <label class="col-sm-3 control-label">Jenis Barang</label>
                         <div class="col-sm-6">
-                            <select ng-disabled="showFormInputJenis" ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="barang.jenis" id="jenis" class="form-control" required>
+                            <select ng-disabled="showFormInputJenis" ng-options="item.namajenis for item in respons.listJenisBarang track by item.idjenis" ng-model="barang.jenis" id="jenis" class="form-control" required>
 								<option value="" selected disabled>Jenis Barang</option>
 							</select>
 							<a ng-disabled="showFormInputJenis" data-toggle="modal" ng-click="showFormInputJenis=true" class="btn btn-primary btn-xs">Tambah Jenis Barang</a>

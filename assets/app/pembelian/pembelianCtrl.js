@@ -8,6 +8,41 @@
 		$scope.disableJenis = false;
 		$scope.listDataBarang = [];
 
+		//view detail pembelian
+		$scope.detailPembelian= function(idbeli){
+            var detail = $modal.open({
+                templateUrl:"view/pembelian/detaiPembelianModal.html",
+                controller : "detailPembelianCtrl",
+                backdrop : false,
+                resolve : {
+                    item : function(){
+                        return idbeli;
+                    }
+                }
+            });
+        };
+
+		//search barang by kode barang
+		$scope.cariBarang = function(barang){
+			$scope.barang.nama=barang.namabarang;
+			$scope.barang.jenis={"idjenis":barang.idjenis, "namajenis":barang.namajenis};
+			$scope.barang.hargasatuan=barang.hargasatuan;
+			$scope.barang.hargajual=barang.hargajual;
+			$scope.barang.jumlahstok=barang.jumlahstock;
+			$scope.barang.satuan=barang.satuan;
+			$scope.barang.stockmin=barang.stockmin;
+		};
+
+		//get data barang
+		var getDataBarang = function(){
+			pembelianFactory.getDataBarang("getDataBarang").
+                then(function () {
+
+                }, function () {
+                    
+                });
+		};
+
 		//get total pembelian
 		$scope.getTotalPembelian = function(){
 			var total=0;
@@ -94,7 +129,13 @@
 			$scope.barang.jumlahstok="0";
 			$scope.barang.satuan="";
 			$scope.barang.stockmin="0";
-		}
+		};
+
+		//clear field pembelian
+		var clearFieldsPembelian = function(){
+			$scope.pembelian.tanggal="";
+			$scope.pembelian.supplier="";
+		};
 		
 		//check location
         if($location.path() === "/pembelian"){
@@ -102,6 +143,7 @@
         } else if ($location.path() === "/pembelian/add"){
 			getDataJenis();
 			getSupplier();
+			getDataBarang();
 		}
 		
 		//edit pembelian
@@ -156,10 +198,14 @@
 				}, function(){
 				
 				});
-			}		
+			}
+
+			clearFieldsPembelian();	
 		};
     };
+
     app.controller("pembelianCtrl",["$scope", "$routeParams","$location","pembelianFactory", pembelianCtrl]);
+
 	app.filter('startFrom', function(){
 		return function(input, start){
 			if (input){
