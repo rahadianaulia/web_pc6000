@@ -7,6 +7,7 @@
 		var listJenisBarang = [];
         var listSupplier = [];
         var listBarang = [];
+        var detailBeli = [];
 
         var url = "repository/pembelian/pembelian.php";
 
@@ -67,15 +68,35 @@
             return deferred.promise;
         }
 
+        var getDetailBeli = function(actionMethode, methodeParams){
+            var deferred = $q.defer();
+            var dataload = $.param({action: actionMethode, params: methodeParams});
+            $http({
+                url: url,
+                method: "post",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                data: dataload
+            }).then(function (result) {
+                    angular.copy(result.data, detailBeli);
+                    deferred.resolve();
+                }, function () {
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        }
+
         return {
             listPembelian: listPembelian,
             objPembelian: objPembelian,
             getData: getData,
             getDataSupplier : getDataSupplier,
             getDataBarang : getDataBarang,
+            getDetailBeli : getDetailBeli,
 			listJenisBarang : listJenisBarang,
             listSupplier : listSupplier,
-            listBarang : listBarang
+            listBarang : listBarang,
+            detailBeli : detailBeli
         }
     };
     app.factory("pembelianFactory", ["$http", "$q", pembelianFactory]);

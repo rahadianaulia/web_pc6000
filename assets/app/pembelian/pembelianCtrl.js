@@ -1,7 +1,7 @@
 (function(){
     var app = angular.module("app");
 		
-    var pembelianCtrl = function($scope,$routeParams,$location, pembelianFactory){
+    var pembelianCtrl = function($scope,$routeParams,$location,$modal, pembelianFactory){
         $scope.respons = pembelianFactory;
 		$scope.messageSuccess = false;
 		$scope.showFormInputJenis = false;
@@ -9,14 +9,15 @@
 		$scope.listDataBarang = [];
 
 		//view detail pembelian
-		$scope.detailPembelian= function(idbeli){
+		$scope.detailPembelian= function(idbeli, tanggal, supplier){
             var detail = $modal.open({
-                templateUrl:"view/pembelian/detaiPembelianModal.html",
+                templateUrl:"view/pembelian/detailPembelianModal.html",
                 controller : "detailPembelianCtrl",
                 backdrop : false,
+                size : 'lg',
                 resolve : {
                     item : function(){
-                        return idbeli;
+                        return { "idbeli":idbeli, "tanggal":tanggal, "namaSupplier":supplier };
                     }
                 }
             });
@@ -47,7 +48,7 @@
 		$scope.getTotalPembelian = function(){
 			var total=0;
 			for (var i=0; i < $scope.listDataBarang.length; i++){
-				total += parseInt($scope.listDataBarang[i].hargasatuan);
+				total += parseInt($scope.listDataBarang[i].hargasatuan) * parseInt($scope.listDataBarang[i].jumlahstok);
 			}
 			return total;
 		};
@@ -133,8 +134,9 @@
 
 		//clear field pembelian
 		var clearFieldsPembelian = function(){
-			$scope.pembelian.tanggal="";
-			$scope.pembelian.supplier="";
+			$scope.pembelian.tanggal = "";
+			$scope.pembelian.supplier = "";
+			$scope.listDataBarang = [];
 		};
 		
 		//check location
@@ -204,7 +206,7 @@
 		};
     };
 
-    app.controller("pembelianCtrl",["$scope", "$routeParams","$location","pembelianFactory", pembelianCtrl]);
+    app.controller("pembelianCtrl",["$scope", "$routeParams","$location","$modal","pembelianFactory", pembelianCtrl]);
 
 	app.filter('startFrom', function(){
 		return function(input, start){

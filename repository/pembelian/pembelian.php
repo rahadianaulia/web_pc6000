@@ -29,6 +29,20 @@ if(isset($_POST["action"])){
 	if ($action == "getPembelian"){
 		echo GetPembelian($conn_db);
 	}
+	if ($action == "getDetailBeli"){
+		echo GetDetailBeli($conn_db, $params);
+	}
+}
+
+function GetDetailBeli($cnn, $params){
+	$que="SELECT detailbeli.idbarang, masterbarang.namabarang, jenisbarang.namajenis, detailbeli.hargasatuan, detailbeli.jumlah, detailbeli.satuan FROM detailbeli JOIN masterbarang ON detailbeli.idbarang=masterbarang.idbarang JOIN jenisbarang ON masterbarang.idjenis=jenisbarang.idjenis WHERE detailbeli.idbeli=$params";
+	$result = mysqli_query($cnn, $que);
+	$arr = [];
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arr[] = $rows;
+	}
+	mysqli_close($cnn);
+	return json_encode($arr);
 }
 
 function GetPembelian($cnn){

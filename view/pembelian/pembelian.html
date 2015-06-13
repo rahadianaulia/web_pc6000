@@ -24,7 +24,7 @@
                             <th data-ng-hide="true">ID</th>
                             <th>Tanggal Beli</th>
                             <th>Supplier</th>
-                            <th>Tota Beli</th>
+                            <th>Total Beli</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -35,6 +35,7 @@
                             <td>{{item.nama}}</td>
                             <td>{{item.totalbeli}}</td>
                             <td>
+                                <a data-ng-click="detailPembelian(item.idbeli, item.tglbeli, item.nama)" class="btn btn-info btn-xs">View</a>
                                 <a class="btn btn-primary btn-xs" data-ng-click="edit(item)" href="#/barang/edit">Edit</a>
                                 <button class="btn btn-danger btn-xs">Delete</button>
                             </td>

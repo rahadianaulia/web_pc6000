@@ -63,6 +63,7 @@
 									<th>Harga Satuan</th>
 									<th>Harga Jual</th>
 									<th>Jumlah Stock</th>
+									<th>Sub Total</th>
 									<th>Stock Minimal</th>
 									<th>Satuan</th>
 								</tr>
@@ -75,11 +76,12 @@
 									<td>{{item.hargasatuan}}</td>
 									<td>{{item.hargajual}}</td>
 									<td>{{item.jumlahstok}}</td>
+									<td>{{item.hargasatuan*item.jumlahstok}}</td>
 									<td>{{item.stockmin}}</td>
 									<td>{{item.satuan}}</td>
 								</tr>
 								<tr>
-									<td colspan="7" align="center"><b>Total Pembelian</b></td>
+									<td colspan="8" align="center"><b>Total Pembelian</b></td>
 									<td>Rp. {{getTotalPembelian()}}</td>
 								</tr>
 							</tbody>
