@@ -69,17 +69,17 @@ function GetDataBarang($cnn){
 
 function TambahMasterBarang($cnn, $params){
 	$param=json_decode($params);
-	$que="insert into masterbarang values('$param->kodeBarang', '$param->namaBarang', $param->idJenis, $param->hargaSatuan, $param->hargaJual, $param->jumlah, '$param->satuan', $param->stockMin)";
+	$que="insert into masterbarang values('$param->kode', '$param->nama', $param->jenisid, $param->hargasatuan, $param->hargajual, $param->jumlahstok, '$param->satuan', $param->stockmin)";
 	$result=mysqli_query($cnn, $que);
-	mysqli_close($cnn);
+	// mysqli_close($cnn);
 	return $result;
 }
 
 function TambahDetailPembelian($cnn, $params){
 	$param=json_decode($params);
-	$que="insert into detailbeli values((SELECT MAX(idbeli) FROM masterbeli), '$param->kodeBarang', $param->jumlah, $param->hargaSatuan, '$param->satuan')";
+	$que="insert into detailbeli values((SELECT MAX(idbeli) FROM masterbeli), '$param->kode', $param->jumlahstok, $param->hargasatuan, '$param->satuan')";
 	$result=mysqli_query($cnn, $que);
-	mysqli_close($cnn);
+	// mysqli_close($cnn);
 	return $result;
 }
 
@@ -87,7 +87,15 @@ function TambahPembelian($cnn, $params){
 	$param=json_decode($params);
 	$que="insert into masterbeli values(NULL, '$param->tanggal', $param->idSupplier, $param->totalBeli)";
 	$result=mysqli_query($cnn, $que);
+	
+
+	for ($i=0;$i<sizeof($param->dataBarang);$i++){
+		echo TambahMasterBarang($cnn, json_encode($param->dataBarang[$i]));
+		echo TambahDetailPembelian($cnn, json_encode($param->dataBarang[$i]));
+	}
+
 	mysqli_close($cnn);
+
 	return $result;
 }
 

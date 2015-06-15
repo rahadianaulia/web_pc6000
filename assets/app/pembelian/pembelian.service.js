@@ -21,8 +21,8 @@
                 data: dataload
             })
                 .then(function (result) {
-                    angular.copy(result.data, listPembelian);
-					angular.copy(result.data, listJenisBarang);
+                     angular.copy(result.data, listJenisBarang);
+                     angular.copy(result.data, listPembelian);    
                     deferred.resolve();
                 }, function () {
                     deferred.reject();

@@ -1,80 +1,80 @@
 <div id="page-heading">
     <ol class="breadcrumb">
         <li><a href="#/supplier">Barang</a></li>
-		<li class='active'>Input Barang</li>
+        <li class='active'>Input Barang</li>
     </ol>
     <h1>Input Barang</h1>
 </div>
 <div class="container">
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-midnightblue">
-          <div class="panel-heading">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-midnightblue">
+              <div class="panel-heading">
                 <h4>Form Input Barang</h4>
-          </div>
-		  
-          <div class="panel-body">  
-<div class='alert alert-dismissable alert-info' ng-show="messageSuccess">Data Barang berhasil ditambahkan.</div>	  
+            </div>
+            
+            <div class="panel-body">  
+                <div class='alert alert-dismissable alert-info' ng-show="messageSuccess">Data Barang berhasil ditambahkan.</div>	  
                 <form ng-submit="simpanBarang(barang)" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
-					<div class="form-group">
-                        <label class="col-sm-3 control-label">Kode Barang</label>
-                        <div class="col-sm-6">
-                            <input ng-model="barang.kode" type="text" placeholder="Kode Barang" required="required" class="form-control">
-                        </div>
+                   <div class="form-group">
+                    <label class="col-sm-3 control-label">Kode Barang</label>
+                    <div class="col-sm-6">
+                        <input ng-model="barang.kode" type="text" placeholder="Kode Barang" required="required" class="form-control">
                     </div>
-					
-					<div class="form-group">
-                        <label class="col-sm-3 control-label">Nama Barang</label>
-                        <div class="col-sm-6">
-                            <input ng-model="barang.nama" type="text" placeholder="Nama Barang" required="required" class="form-control">
-                        </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Nama Barang</label>
+                    <div class="col-sm-6">
+                        <input ng-model="barang.nama" type="text" placeholder="Nama Barang" required="required" class="form-control">
                     </div>
-					
-					<div class="form-group">
-                        <label class="col-sm-3 control-label">Jenis Barang</label>
-                        <div class="col-sm-6">
-                            <select ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="barang.jenis" name="jenis" id="jenis" class="form-control" required>
-								<option value="" selected disabled>Jenis Barang</option>
-							</select>
-							<a data-toggle="modal" href="#/barang/add#myModal" class="btn btn-primary btn-xs">Tambah Jenis Barang</a>
-                        </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Jenis Barang</label>
+                    <div class="col-sm-6">
+                        <select ng-options="item.namajenis for item in respons.listJenisBarang" ng-model="barang.jenis" name="jenis" id="jenis" class="form-control" required>
+                            <option value="" selected disabled>Jenis Barang</option>
+                        </select>
+                        <a data-toggle="modal" href="#/barang/add#myModal" class="btn btn-primary btn-xs">Tambah Jenis Barang</a>
                     </div>
-					
-					<div class="form-group">
-                        <label class="col-sm-3 control-label">Harga Satuan</label>
-                        <div class="col-sm-6">
-                            <input ng-model="barang.hargasatuan" type="text" placeholder="Harga Satuan" required="required" class="form-control">
-                        </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Harga Satuan</label>
+                    <div class="col-sm-6">
+                        <input ng-model="barang.hargasatuan" type="text" placeholder="Harga Satuan" required="required" class="form-control">
                     </div>
-					
-					<div class="form-group">
-                        <label class="col-sm-3 control-label">Harga Jual</label>
-                        <div class="col-sm-6">
-                            <input ng-model="barang.hargajual" type="text" placeholder="Harga Jual" required="required" class="form-control">
-                        </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Harga Jual</label>
+                    <div class="col-sm-6">
+                        <input ng-model="barang.hargajual" type="text" placeholder="Harga Jual" required="required" class="form-control">
                     </div>
-					
-					<div class="form-group">
-                        <label class="col-sm-3 control-label">Jumlah Stock</label>
-                        <div class="col-sm-6">
-                            <input ng-model="barang.jumlahstok" type="text" placeholder="Jumlah Stock" required="required" class="form-control">
-                        </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Jumlah Stock</label>
+                    <div class="col-sm-6">
+                        <input ng-model="barang.jumlahstok" type="text" placeholder="Jumlah Stock" required="required" class="form-control">
                     </div>
-					
-					<div class="form-group">
-                        <label class="col-sm-3 control-label">Stock Minimal</label>
-                        <div class="col-sm-6">
-                            <input ng-model="barang.stokminimal" type="text" placeholder="Stock Minimal" required="required" class="form-control">
-                        </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Stock Minimal</label>
+                    <div class="col-sm-6">
+                        <input ng-model="barang.stokminimal" type="text" placeholder="Stock Minimal" required="required" class="form-control">
                     </div>
-					
-					<div class="form-group">
-                        <label class="col-sm-3 control-label">Satuan</label>
-                        <div class="col-sm-6">
-                            <input ng-model="barang.satuan" type="text" placeholder="Satuan" required="required" class="form-control">
-                        </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Satuan</label>
+                    <div class="col-sm-6">
+                        <input ng-model="barang.satuan" type="text" placeholder="Satuan" required="required" class="form-control">
                     </div>
-					        
+                </div>
+                
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div class="btn-toolbar">
@@ -83,10 +83,10 @@
                         </div>
                     </div>
                 </div>
-				</form>
-				</div>
-		</div>
+            </form>
+        </div>
     </div>
+</div>
 </div>
 </div>
 
