@@ -10,9 +10,97 @@ if(isset($_POST["action"])){
 	}
 	if ($action == "getJenis"){
 		echo GetJenis($conn_db);
-	}    
+	}
+	if ($action == "getSupplier"){
+		echo GetSupplier($conn_db);
+	}
+	if ($action == "tambahPembelian"){
+		echo TambahPembelian($conn_db, $params);
+	}
+	if ($action == "tambahDetailPembelian"){
+		echo TambahDetailPembelian($conn_db, $params);
+	}
+	if ($action == "tambahMasterBarang"){
+		echo TambahMasterBarang($conn_db, $params);
+	}
+	if ($action == "getDataBarang"){
+		echo GetDataBarang($conn_db);
+	}
+	if ($action == "getPembelian"){
+		echo GetPembelian($conn_db);
+	}
+	if ($action == "getDetailBeli"){
+		echo GetDetailBeli($conn_db, $params);
+	}
 }
 
+function GetDetailBeli($cnn, $params){
+	$que="SELECT detailbeli.idbarang, masterbarang.namabarang, jenisbarang.namajenis, detailbeli.hargasatuan, detailbeli.jumlah, detailbeli.satuan FROM detailbeli JOIN masterbarang ON detailbeli.idbarang=masterbarang.idbarang JOIN jenisbarang ON masterbarang.idjenis=jenisbarang.idjenis WHERE detailbeli.idbeli=$params";
+	$result = mysqli_query($cnn, $que);
+	$arr = [];
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arr[] = $rows;
+	}
+	mysqli_close($cnn);
+	return json_encode($arr);
+}
+
+function GetPembelian($cnn){
+	$que="select masterbeli.idbeli, masterbeli.tglbeli, masterbeli.idsuplier, suplier.nama, masterbeli.totalbeli from masterbeli join suplier on masterbeli.idsuplier=suplier.idsuplier";
+	$result = mysqli_query($cnn, $que);
+	$arr = [];
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arr[] = $rows;
+	}
+	mysqli_close($cnn);
+	return json_encode($arr);
+}
+
+function GetDataBarang($cnn){
+	$que="select masterbarang.idbarang, masterbarang.namabarang, masterbarang.idjenis, jenisbarang.namajenis, masterbarang.hargasatuan, masterbarang.hargajual, masterbarang.jumlahstock, masterbarang.satuan, masterbarang.stockmin from masterbarang join jenisbarang on masterbarang.idjenis=jenisbarang.idjenis";
+	$result = mysqli_query($cnn, $que);
+	$arr = [];
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arr[] = $rows;
+	}
+	mysqli_close($cnn);
+	return json_encode($arr);
+}
+
+function TambahMasterBarang($cnn, $params){
+	$param=json_decode($params);
+	$que="insert into masterbarang values('$param->kodeBarang', '$param->namaBarang', $param->idJenis, $param->hargaSatuan, $param->hargaJual, $param->jumlah, '$param->satuan', $param->stockMin)";
+	$result=mysqli_query($cnn, $que);
+	mysqli_close($cnn);
+	return $result;
+}
+
+function TambahDetailPembelian($cnn, $params){
+	$param=json_decode($params);
+	$que="insert into detailbeli values((SELECT MAX(idbeli) FROM masterbeli), '$param->kodeBarang', $param->jumlah, $param->hargaSatuan, '$param->satuan')";
+	$result=mysqli_query($cnn, $que);
+	mysqli_close($cnn);
+	return $result;
+}
+
+function TambahPembelian($cnn, $params){
+	$param=json_decode($params);
+	$que="insert into masterbeli values(NULL, '$param->tanggal', $param->idSupplier, $param->totalBeli)";
+	$result=mysqli_query($cnn, $que);
+	mysqli_close($cnn);
+	return $result;
+}
+
+function GetSupplier($cnn){
+	$que="select * from suplier";
+	$result = mysqli_query($cnn, $que);
+	$arr = [];
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arr[] = $rows;
+	}
+	mysqli_close($cnn);
+	return json_encode($arr);
+}
 
 function TambahJenis($cnn,$params){
 	$param=array_shift($params);

@@ -1,26 +1,84 @@
 (function(){
     var app = angular.module("app");
 		
-    var pembelianCtrl = function($scope,$routeParams,$location, pembelianFactory){
+    var pembelianCtrl = function($scope,$routeParams,$location,$modal, pembelianFactory){
         $scope.respons = pembelianFactory;
-		$scope.messageSuccess=false;
-		$scope.showFormInputJenis=false;
-		$scope.disableJenis=false;
-		$scope.listDataBarang=[];
-		$scope.totalPembelian=0;
+		$scope.messageSuccess = false;
+		$scope.showFormInputJenis = false;
+		$scope.disableJenis = false;
+		$scope.listDataBarang = [];
 
-		//get totaL pembelian
-		var getTotalPembelian = function(){
+		//view detail pembelian
+		$scope.detailPembelian= function(idbeli, tanggal, supplier){
+            var detail = $modal.open({
+                templateUrl:"view/pembelian/detailPembelianModal.html",
+                controller : "detailPembelianCtrl",
+                backdrop : false,
+                size : 'lg',
+                resolve : {
+                    item : function(){
+                        return { "idbeli":idbeli, "tanggal":tanggal, "namaSupplier":supplier };
+                    }
+                }
+            });
+        };
+
+		//search barang by kode barang
+		$scope.cariBarang = function(barang){
+			$scope.barang.nama=barang.namabarang;
+			$scope.barang.jenis={"idjenis":barang.idjenis, "namajenis":barang.namajenis};
+			$scope.barang.hargasatuan=barang.hargasatuan;
+			$scope.barang.hargajual=barang.hargajual;
+			$scope.barang.jumlahstok=barang.jumlahstock;
+			$scope.barang.satuan=barang.satuan;
+			$scope.barang.stockmin=barang.stockmin;
+		};
+
+		//get data barang
+		var getDataBarang = function(){
+			pembelianFactory.getDataBarang("getDataBarang").
+                then(function () {
+
+                }, function () {
+                    
+                });
+		};
+
+		//get total pembelian
+		$scope.getTotalPembelian = function(){
+			var total=0;
 			for (var i=0; i < $scope.listDataBarang.length; i++){
-				$scope.totalPembelian =  +$scope.listDataBarang[i].hargasatuan;
+				total += parseInt($scope.listDataBarang[i].hargasatuan) * parseInt($scope.listDataBarang[i].jumlahstok);
 			}
+			return total;
+		};
+
+		//get data supplier
+		var getSupplier = function(){
+			pembelianFactory.getDataSupplier("getSupplier").
+                then(function () {
+
+                }, function () {
+                    
+                });
 		};
 		
 		//tambah data barang
 		$scope.tambahDataBarang = function(barang){
-			$scope.listDataBarang.push({kode: barang.kode, nama: barang.nama, jenisid: barang.jenis.idjenis, jenisnama: barang.jenis.namajenis, hargasatuan: barang.hargasatuan, hargajual: barang.hargajual, jumlahstok: barang.jumlah, satuan: barang.satuan});
+			$scope.listDataBarang.push({
+				kode: barang.kode, 
+				nama: barang.nama, 
+				jenisid: barang.jenis.idjenis, 
+				jenisnama: barang.jenis.namajenis, 
+				hargasatuan: barang.hargasatuan, 
+				hargajual: barang.hargajual, 
+				jumlahstok: barang.jumlahstok,
+				stockmin: barang.stockmin, 
+				satuan: barang.satuan
+			});
 			clearFieldsBarang();
-			getTotalPembelian();
+			$scope.getTotalPembelian();
+			$scope.messageSuccess=true;
 		};
 		
 		//tambah jenis barang
@@ -69,15 +127,25 @@
 			$scope.barang.jenis="Jenis Barang";
 			$scope.barang.hargasatuan="0";
 			$scope.barang.hargajual="0";
-			$scope.barang.jumlah="0";
+			$scope.barang.jumlahstok="0";
 			$scope.barang.satuan="";
-		}
+			$scope.barang.stockmin="0";
+		};
+
+		//clear field pembelian
+		var clearFieldsPembelian = function(){
+			$scope.pembelian.tanggal = "";
+			$scope.pembelian.supplier = "";
+			$scope.listDataBarang = [];
+		};
 		
 		//check location
         if($location.path() === "/pembelian"){
             getPembelian();
         } else if ($location.path() === "/pembelian/add"){
 			getDataJenis();
+			getSupplier();
+			getDataBarang();
 		}
 		
 		//edit pembelian
@@ -86,18 +154,60 @@
         };
 		
 		//simpan pembelian
-		$scope.simpanPembelian=function(pembelian){
-			pembelianFactory.getData("addPembelian", JSON.stringify(pembelian)).
+		$scope.simpanPembelian=function(pembelian, dataBarang, totalBeli){
+			var masterBeli = {
+				"tanggal": pembelian.tanggal,
+				"idSupplier": pembelian.supplier.idsuplier,
+				"totalBeli": totalBeli
+			};
+
+			pembelianFactory.getData("tambahPembelian", JSON.stringify(masterBeli)).
 				then(function(){
-					getDataJenis();
-					$scope.messageSuccess=true;
-					clearFields();
+
 				}, function(){
 				
 				});
+
+			for (var i=0; i<dataBarang.length; i++){
+				var dataPembelian = {
+					"kodeBarang": dataBarang[i].kode,
+					"hargaSatuan": dataBarang[i].hargasatuan,
+					"jumlah": dataBarang[i].jumlahstok,
+					"satuan": dataBarang[i].satuan
+				};
+
+				var masterBarang = {
+					"kodeBarang": dataBarang[i].kode,
+					"namaBarang": dataBarang[i].nama,
+					"idJenis": dataBarang[i].jenisid,
+					"hargaSatuan": dataBarang[i].hargasatuan,
+					"hargaJual": dataBarang[i].hargajual,
+					"jumlah": dataBarang[i].jumlahstok,
+					"satuan": dataBarang[i].satuan,
+					"stockMin": dataBarang[i].stockmin
+				};
+
+				pembelianFactory.getData("tambahMasterBarang", JSON.stringify(masterBarang)).
+				then(function(){
+
+				}, function(){
+				
+				});
+
+				pembelianFactory.getData("tambahDetailPembelian", JSON.stringify(dataPembelian)).
+				then(function(){
+					
+				}, function(){
+				
+				});
+			}
+
+			clearFieldsPembelian();	
 		};
     };
-    app.controller("pembelianCtrl",["$scope", "$routeParams","$location","pembelianFactory", pembelianCtrl]);
+
+    app.controller("pembelianCtrl",["$scope", "$routeParams","$location","$modal","pembelianFactory", pembelianCtrl]);
+
 	app.filter('startFrom', function(){
 		return function(input, start){
 			if (input){
