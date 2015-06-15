@@ -71,6 +71,7 @@ function DeleteBeli($cnn,$params){
     mysqli_close($cnn);
     return $result;
 }
+
 function UpdateBeli($cnn,$params){
     $obj = json_decode($params);
     $que = "update masterbeli set idsuplier=$obj->idsuplier, hutang=$obj->hutang  where idbeli = $obj->idbeli";
