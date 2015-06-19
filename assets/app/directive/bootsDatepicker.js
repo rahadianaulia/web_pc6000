@@ -15,7 +15,7 @@
                         format: "yyyy-mm-dd",
                         todayHighlight: true,
                         todayBtn: "linked",
-                        calendarWeeks: true
+                        calendarWeeks: true,
 
                     }
                 );

@@ -14,81 +14,92 @@
                     <div class="options">
                         <a href="javascript:;"><i class="fa fa-cog"></i></a>
                         <a href="javascript:;"><i class="fa fa-wrench"></i></a>
-                        <a href="javascript:;" class="panel-collapse"><i class="fa fa-chevron-down"></i></a>
+                        <a href="" data-ng-click="collapsePanel()" class="panel-collapse">
+                            <i class="fa" data-ng-class="isCollapse ? 'fa-chevron-up': 'fa-chevron-down'"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="panel-body collapse in">
+                <div class="panel-body collapse in" data-ng-style="{'display' : isCollapse ? 'none' : 'block' }">
                     <form class="form-horizontal row-border">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Tanggal Masuk</label>
 
                             <div class="col-sm-6">
-                                <boots-datepicker class="form-control" ng-model = "tglMasuk"></boots-datepicker>
+                                <boots-datepicker class="form-control" ng-model="tglMasuk"></boots-datepicker>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Status Perbaikan</label>
 
                             <div class="col-sm-6">
-                                <label>
-                                    <input type="radio" ng-model="status.perbaikan" value="Belum Selesai">
-                                    Belum Selesai
-                                </label><br/>
-                                <label>
-                                    <input type="radio" ng-model="status.perbaikan" value="Selesai">
-                                    Selesai
-                                </label><br/>
-                                <label>
-                                    <input type="radio" ng-model="status.perbaikan" value="Kembali">
-                                    Kembali
-                                </label>
-
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-6 col-sm-offset-3">
-                                <div class="btn-toolbar">
-                                    <button type="submit" class="btn-primary btn" data-ng-click="viewData()">View Data</button>
+                                <div class="form-control">
+                                    <div class="col-sm-3">
+                                        <label>
+                                            <input type="radio" ng-model="status.perbaikan" value="Semua">
+                                            Semua
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>
+                                            <input type="radio" ng-model="status.perbaikan" value="Belum Selesai">
+                                            Belum Selesai
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>
+                                            <input type="radio" ng-model="status.perbaikan" value="Selesai">
+                                            Selesai
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>
+                                            <input type="radio" ng-model="status.perbaikan" value="Kembali">
+                                            Kembali
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="panel-body collapse in" data-ng-hide="dataPerbaikan.listPerbaikan">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div class="btn-toolbar">
+                                    <button type="submit" class="btn-primary btn" data-ng-click="viewData()">View Data
+                                    </button>
+                                    <a href="#/perbaikan/inputPerbaikan" class="btn-primary btn">Tambah</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="panel-body collapse in" data-ng-show="dataPerbaikan.listPerbaikan.length">
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Tgl. Masuk</th>
                                         <th>Nama Customer</th>
                                         <th>Unit</th>
                                         <th>Keterangan Kerusakan</th>
                                         <th>Status</th>
-                                        <th>Keterangan Kembali</th>
                                         <th>Tgl. Selesai</th>
                                         <th>Total</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr data-ng-repeat="item in dataPerbaikan.listPerbaikan">
-                                        <td>{{item.idperbaikan}}</td>
                                         <td>{{item.tglmasuk}}</td>
                                         <td>{{item.namacustomer}}</td>
                                         <td>{{item.unit}}</td>
                                         <td>{{item.keteranganrusak}}</td>
                                         <td>{{item.status}}</td>
-                                        <td>{{item.keterangankembali}}</td>
                                         <td>{{item.tglselesai}}</td>
                                         <td>{{item.total}}</td>
+                                        <td><a href="" class="btn btn-info btn-xs">Detail</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </form>
-
-                </div>
-                <div class="panel-footer">
 
                 </div>
             </div>

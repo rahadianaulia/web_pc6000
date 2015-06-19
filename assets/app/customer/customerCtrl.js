@@ -51,6 +51,10 @@
             },function(){});
         };
 
+        $scope.isCollapse = false;
+        $scope.collapsePanel = function(){
+            $scope.isCollapse = !$scope.isCollapse;
+        }
 
     }]);
 }());

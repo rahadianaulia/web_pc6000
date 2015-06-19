@@ -33,7 +33,8 @@ if(isset($_POST["action"])){
 }
 
 function GetPerbaikan($cnn){
-    $que = "select * from perbaikan";
+    $que = "SELECT *, nama namacustomer FROM perbaikan
+            LEFT JOIN customer USING (idcustomer)";
     $result = mysqli_query($cnn, $que);
     $arr = [];
     while($rows = mysqli_fetch_assoc($result)){

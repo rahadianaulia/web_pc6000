@@ -1,0 +1,45 @@
+<div class="panel panel-midnightblue">
+    <div class="panel-heading">
+        <h4>Form Input Customer</h4>
+
+
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal row-border" data-validate="parsley" id="validate-form">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Nama Customer</label>
+
+                <div class="col-sm-6">
+                    <input ng-model="customer.nama" type="text" placeholder="Nama Customer" required="required"
+                           class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Alamat</label>
+
+                <div class="col-sm-6">
+                    <input ng-model="customer.alamat" type="text" placeholder="Alamat" required="required"
+                           class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">No. Handphone</label>
+
+                <div class="col-sm-6">
+                    <input ng-model="customer.no_hp" type="text" placeholder="No. Hp" required="required"
+                           class="form-control">
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="panel-footer collapse in">
+
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="btn-toolbar">
+                <button type="submit" class="btn-primary btn" data-ng-click="save(customer)">Submit</button>
+                <button class="btn-default btn" data-ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
