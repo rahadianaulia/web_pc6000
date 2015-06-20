@@ -8,6 +8,14 @@
 		$scope.disableJenis = false;
 		$scope.listDataBarang = [];
 
+		//initial disable field barang
+		$scope.namaBarangDisable = false;
+		$scope.hargaSatuanDisable = false;
+		$scope.hargaJualDisable = false;
+		$scope.jumlahStockDisable = false;
+		$scope.stockMinimalDisable = false;
+		$scope.satuanDisable = false;
+
 		//view detail pembelian
 		$scope.detailPembelian= function(idbeli, tanggal, supplier){
             var detail = $modal.open({
@@ -32,6 +40,13 @@
 			$scope.barang.jumlahstok=barang.jumlahstock;
 			$scope.barang.satuan=barang.satuan;
 			$scope.barang.stockmin=barang.stockmin;
+
+			//disable field
+			$scope.namaBarangDisable = true;
+			$scope.hargaSatuanDisable = true;
+			$scope.hargaJualDisable = true;
+			$scope.stockMinimalDisable = true;
+			$scope.satuanDisable = true;
 		};
 
 		//get data barang
@@ -119,17 +134,29 @@
 				
 				});
 		};
+
+		//reset field barang
+		$scope.resetFieldsBarang = function(){
+			clearFieldsBarang();
+		};
 		
 		//clear fields
 		var clearFieldsBarang=function(){
 			$scope.barang.kode="";
 			$scope.barang.nama="";
 			$scope.barang.jenis="Jenis Barang";
-			$scope.barang.hargasatuan="0";
-			$scope.barang.hargajual="0";
-			$scope.barang.jumlahstok="0";
+			$scope.barang.hargasatuan="";
+			$scope.barang.hargajual="";
+			$scope.barang.jumlahstok="";
 			$scope.barang.satuan="";
-			$scope.barang.stockmin="0";
+			$scope.barang.stockmin="";
+
+			//enable field barang
+			$scope.namaBarangDisable = false;
+			$scope.hargaSatuanDisable = false;
+			$scope.hargaJualDisable = false;
+			$scope.stockMinimalDisable = false;
+			$scope.satuanDisable = false;
 		};
 
 		//clear field pembelian
@@ -168,40 +195,6 @@
 				}, function(){
 
 				});
-
-			// for (var i=0; i<dataBarang.length; i++){
-			// 	var dataPembelian = {
-			// 		"kodeBarang": dataBarang[i].kode,
-			// 		"hargaSatuan": dataBarang[i].hargasatuan,
-			// 		"jumlah": dataBarang[i].jumlahstok,
-			// 		"satuan": dataBarang[i].satuan
-			// 	};
-
-			// 	var masterBarang = {
-			// 		"kodeBarang": dataBarang[i].kode,
-			// 		"namaBarang": dataBarang[i].nama,
-			// 		"idJenis": dataBarang[i].jenisid,
-			// 		"hargaSatuan": dataBarang[i].hargasatuan,
-			// 		"hargaJual": dataBarang[i].hargajual,
-			// 		"jumlah": dataBarang[i].jumlahstok,
-			// 		"satuan": dataBarang[i].satuan,
-			// 		"stockMin": dataBarang[i].stockmin
-			// 	};
-
-			// 	pembelianFactory.getData("tambahMasterBarang", JSON.stringify(masterBarang)).
-			// 	then(function(){
-
-			// 	}, function(){
-				
-			// 	});
-
-			// 	pembelianFactory.getData("tambahDetailPembelian", JSON.stringify(dataPembelian)).
-			// 	then(function(){
-					
-			// 	}, function(){
-				
-			// 	});
-			// }
 
 			clearFieldsPembelian();	
 		};

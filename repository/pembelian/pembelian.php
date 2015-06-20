@@ -69,7 +69,8 @@ function GetDataBarang($cnn){
 
 function TambahMasterBarang($cnn, $params){
 	$param=json_decode($params);
-	$que="insert into masterbarang values('$param->kode', '$param->nama', $param->jenisid, $param->hargasatuan, $param->hargajual, $param->jumlahstok, '$param->satuan', $param->stockmin)";
+	// $que="insert into masterbarang values('$param->kode', '$param->nama', $param->jenisid, $param->hargasatuan, $param->hargajual, $param->jumlahstok, '$param->satuan', $param->stockmin)";
+	$que = "call sp_addBarang('$param->kode', '$param->nama', $param->jenisid, $param->hargasatuan, $param->hargajual, $param->jumlahstok, '$param->satuan', $param->stockmin)";
 	$result=mysqli_query($cnn, $que);
 	// mysqli_close($cnn);
 	return $result;
