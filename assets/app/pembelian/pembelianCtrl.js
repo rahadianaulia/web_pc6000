@@ -16,6 +16,31 @@
 		$scope.stockMinimalDisable = false;
 		$scope.satuanDisable = false;
 
+		//delete pembelian
+		$scope.delete = function(itemToDelete){
+            var modalDialog = $modal.open({
+                templateUrl : "view/modal/confirmDialog.html",
+                controller : "confirmDialogCtrl",
+                backdrop : false,
+                resolve :{
+                    header : function(){
+                        return "Konfirmasi";
+                    },
+                    pesan : function(){
+                        return 'Hapus pembelian tanggal: ' + itemToDelete.tglbeli + ', supplier: ' + itemToDelete.nama +' ?';
+                    }
+                }
+            });
+
+            modalDialog.result.then(function(hasil){
+                pembelianFactory.deletePembelian("deletePembelian", itemToDelete.idbeli).
+                    then(function(){
+                        toaster.pop("succes", "Data pembelian tanggal: " + itemToDelete.tglbeli + ', supplier: ' + itemToDelete.nama +' sudah dihapus');
+                        getPembelian();
+                    },function(){});
+            },function(){});
+        };
+
 		//view detail pembelian
 		$scope.detailPembelian= function(idbeli, tanggal, supplier){
             var detail = $modal.open({

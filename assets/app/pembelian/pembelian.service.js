@@ -86,10 +86,28 @@
             return deferred.promise;
         }
 
+        var deletePembelian = function(actionMethode, methodeParams){
+            var deferred = $q.defer();
+            var dataload = $.param({action: actionMethode, params: methodeParams});
+            $http({
+                url: url,
+                method: "post",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                data: dataload
+            }).then(function (result) {
+                    deferred.resolve();
+                }, function () {
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        }        
+
         return {
             listPembelian: listPembelian,
             objPembelian: objPembelian,
             getData: getData,
+            deletePembelian : deletePembelian,
             getDataSupplier : getDataSupplier,
             getDataBarang : getDataBarang,
             getDetailBeli : getDetailBeli,

@@ -32,6 +32,18 @@ if(isset($_POST["action"])){
 	if ($action == "getDetailBeli"){
 		echo GetDetailBeli($conn_db, $params);
 	}
+	if ($action == "deletePembelian"){
+		echo DeletePembelian($conn_db, $params);
+	}
+}
+
+function DeletePembelian($cnn, $params){
+	$que = "delete from detailbeli where idbeli=$params";
+	$que1 = "delete from masterbeli where idbeli=$params";
+	$result = mysqli_query($cnn, $que);
+	$result = mysqli_query($cnn, $que1);
+	mysqli_close($cnn);
+	return $result;
 }
 
 function GetDetailBeli($cnn, $params){
