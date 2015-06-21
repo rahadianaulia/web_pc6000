@@ -7,7 +7,8 @@
         $scope.item = {
             idcustomer : item.idcustomer,
             nama : item.nama,
-            alamat : item.alamat
+            alamat : item.alamat,
+            no_hp : item.no_hp
         };
 
         $scope.cancel = function(){

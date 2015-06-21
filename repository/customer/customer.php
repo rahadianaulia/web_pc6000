@@ -44,7 +44,7 @@ function GetCustomerById($cnn,$params){
 
 function AddCustomer($cnn,$params){
     $obj = json_decode($params);
-    $que = "insert into customer(nama, alamat) values ('$obj->nama', '$obj->alamat')";
+    $que = "insert into customer(nama, alamat,no_hp) values ('$obj->nama', '$obj->alamat', $obj->no_hp)";
     $result = mysqli_query($cnn,$que);
     mysqli_close($cnn);
     return $result;
@@ -60,7 +60,7 @@ function DeleteCustomer($cnn,$params){
 }
 function UpdateCustomer($cnn,$params){
     $obj = json_decode($params);
-    $que = "update customer set nama='$obj->nama', alamat='$obj->alamat'  where idcustomer = $obj->idcustomer";
+    $que = "update customer set nama='$obj->nama', alamat='$obj->alamat', no_hp ='$obj->no_hp'  where idcustomer = $obj->idcustomer";
     $result = mysqli_query($cnn, $que);
     mysqli_close($cnn);
     return $result;

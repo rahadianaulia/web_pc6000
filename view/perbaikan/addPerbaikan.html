@@ -1,0 +1,77 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/perbikan">Perbaikan</a></li>
+        <li class='active'>Input Perbaikan</li>
+    </ol>
+    <h1>Input Perbaikan</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-midnightblue">
+                <div class="panel-heading">
+                    <h4>Form Input Perbaikan</h4>
+
+
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nama Customer</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" ng-model="idcustomer" >
+                                    <option data-ng-repeat="item in customers.listCustomer" value="{{item.idcustomer}}">{{item.nama}}</option>
+                                </select>
+                                <button class="btn btn-primary btn-xs" data-ng-click="tambahCustomer()">Tambah Customer</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Perangkat</label>
+                            <div class="col-sm-6">
+                                <input ng-model="perbaikan.perangkat" type="text" placeholder="Perangkat" required="required" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Kerusakan</label>
+                            <div class="col-sm-6">
+                                <textarea  ng-model="perbaikan.kerusakan" class="form-control" ></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Status</label>
+                            <div class="col-sm-6">
+                                <input ng-model="perbaikan.status" type="text" placeholder="status" required="required" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Keterangan Pengembalian</label>
+                            <div class="col-sm-6">
+                                <textarea  ng-model="perbaikan.ketKembali" class="form-control" ></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tanggal Selesai</label>
+                            <div class="col-sm-6">
+                                <boots-datepicker class="form-control" ng-model = "perbaikan.tglselesai"></boots-datepicker>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Biaya Perbaikan</label>
+                            <div class="col-sm-6">
+                                <input ng-model="perbaikan.total" type="text" placeholder="Biaya Perbaikan" required="required" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div class="btn-toolbar">
+                                    <button type="submit" class="btn-primary btn" data-ng-click="save(customer)">Submit</button>
+                                    <a class="btn-default btn" href="#/perbaikan">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

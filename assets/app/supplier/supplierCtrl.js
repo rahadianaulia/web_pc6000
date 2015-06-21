@@ -46,7 +46,7 @@
             var modalDialog = $modal.open({
                 templateUrl : "view/modal/confirmDialog.html",
                 controller : "confirmDialogCtrl",
-                size : "sm",
+                //size : "sm",
                 backdrop : false,
                 resolve :{
                     header : function(){
@@ -66,6 +66,11 @@
                     },function(){});
             },function(){});
         };
+
+        $scope.isCollapse = false;
+        $scope.collapsePanel = function(){
+            $scope.isCollapse = !$scope.isCollapse;
+        }
 
     };
     app.controller("supplierCtrl",["$scope", "$routeParams","$modal","$location","supplierFactory","toaster", supplierCtrl]);
