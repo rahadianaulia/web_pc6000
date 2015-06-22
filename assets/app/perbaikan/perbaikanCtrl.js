@@ -11,6 +11,10 @@
             );
         };
 
+        $scope.detail = function(obj){
+            perbaikanFactory.objPerbaikan = obj;
+        };
+
         $scope.isCollapse = false;
         $scope.collapsePanel = function(){
             $scope.isCollapse = !$scope.isCollapse;

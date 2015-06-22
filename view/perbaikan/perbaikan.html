@@ -1,6 +1,6 @@
 <div id="page-heading">
     <ol class="breadcrumb">
-        <li class='active'><a href="#/perbaikan">Perbaikan Perangkat</a></li>
+        <li class='active'><a href="#/perbaikan">Perbaikan</a></li>
     </ol>
     <h1>Perbaikan Perangkat</h1>
 </div>
@@ -65,7 +65,7 @@
                                 <div class="btn-toolbar">
                                     <button type="submit" class="btn-primary btn" data-ng-click="viewData()">View Data
                                     </button>
-                                    <a href="#/perbaikan/inputPerbaikan" class="btn-primary btn">Tambah</a>
+                                    <a href="#/perbaikan/add" class="btn-primary btn">New Order</a>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,12 @@
                                         <td>{{item.status}}</td>
                                         <td>{{item.tglselesai}}</td>
                                         <td>{{item.total}}</td>
-                                        <td><a href="" class="btn btn-info btn-xs">Detail</a></td>
+                                        <td>
+                                            <a href="#/perbaikan/detail" data-ng-click="detail(item)"
+                                               class="btn btn-info btn-xs">
+                                                Detail
+                                            </a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

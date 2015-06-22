@@ -3,6 +3,7 @@
     app.service("perbaikanFactory",["$http","$q", function($http, $q){
         var listPerbaikan = [];
         var respon = [];
+        var objPerbaikan = {};
         var request = function(actionMethode, methodeParams){
             var deferred = $q.defer();
             var url = "repository/perbaikan/perbaikan.php";
@@ -53,6 +54,7 @@
         return{
             listPerbaikan : listPerbaikan,
             respon : respon,
+            objPerbaikan : objPerbaikan,
             getPerbaikan : getPerbaikan,
             getByTglMasuk : getByTglMasuk,
             getByTglKeluar : getByTglKeluar,

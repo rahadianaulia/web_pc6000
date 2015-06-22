@@ -1,0 +1,145 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li class='active'><a href="#/perbaikan">Perbaikan</a></li>
+        <li>Detail Perbaikan</li>
+    </ol>
+    <h1>Detail Perbaikan</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-sky">
+                <div class="panel-heading">
+                    <h4>Data Perbaikan</h4>
+
+                    <div class="options">
+                        <a href="" data-ng-click=""><i class="fa fa-cog"></i></a>
+                        <a href=""><i class="fa fa-wrench"></i></a>
+                        <a href="" data-ng-click="collapsePanel()" class="panel-collapse">
+                            <i class="fa" data-ng-class="isCollapse ? 'fa-chevron-up': 'fa-chevron-down'"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal ">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tanggal Masuk</label>
+
+                            <div class="col-sm-6">
+                                <label type="text" class="form-control">
+                                    {{objPerbaikan.tglmasuk}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nama Customer</label>
+
+                            <div class="col-sm-6">
+                                <label type="text" class="form-control">
+                                    {{objPerbaikan.namacustomer}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Perangkat</label>
+
+                            <div class="col-sm-6">
+                                <label type="text" class="form-control">
+                                    {{objPerbaikan.unit}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Ket. Kerusakan</label>
+
+                            <div class="col-sm-6">
+                                <textarea class="form-control" ng-disabled="disableInput">{{objPerbaikan.keteranganrusak}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Status</label>
+
+                            <div class="col-sm-6">
+                                <label type="text" class="form-control">
+                                    {{objPerbaikan.status}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Ket. Pengembalian</label>
+
+                            <div class="col-sm-6">
+                                <textarea class="form-control" ng-disabled="disableInput">{{objPerbaikan.keterangankembali}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tgl. Selesai</label>
+
+                            <div class="col-sm-6">
+                                <label type="text" class="form-control">
+                                    {{objPerbaikan.tglselesai}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Biaya Perbaikan</label>
+                            <div class="col-sm-6">
+                                <label type="text" class="form-control">
+                                    {{objPerbaikan.total}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="btn-toolbar">
+                                <button class="btn-primary btn" data-ng-click="">Selesai</button>
+                                <button class="btn-warning btn" data-ng-click="">Edit Perbaikan</button>
+                                <button class="btn-danger btn" data-ng-click="">Hapus</button>
+                                <a href="#/perbaikan" class="btn-default btn" data-ng-click="cancel()">Kembali</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-sky">
+                    <div class="panel-heading">
+                        <h4>Detail</h4>
+                    </div>
+                    <div class="panel-body collapse in" data-ng-style="{'display' : isCollapse ? 'none' : 'block' }">
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered ">
+                            <thead>
+                            <tr>
+                                <th data-ng-hide="true">Id</th>
+                                <th>Nama Barang</th>
+                                <th>Harga Barang</th>
+                                <th>Jasa Perbaikan</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-ng-repeat="item in respon.listCustomer">
+                                <td data-ng-hide="true">{{item.idcustomer}}</td>
+                                <td>{{item.nama}}</td>
+                                <td>{{item.alamat}}</td>
+                                <td>{{item.no_hp}}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-xs" data-ng-click="editCustomer(item)">Edit</a>
+                                    <button class="btn btn-danger btn-xs" data-ng-click="delete(item)">Delete</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel-footer collapse in" data-ng-style="{'display' : isCollapse ? 'none' : 'block' }">
+                    <!--<a href="#/customer/add" class="btn btn-primary">Add</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- container -->
+
+
+

@@ -52,9 +52,13 @@
                 templateUrl : "view/perbaikan/perbaikan.html",
                 controller : "perbaikanCtrl"
             }).
-            when("/perbaikan/inputPerbaikan",{
+            when("/perbaikan/add",{
                 templateUrl : "view/perbaikan/addPerbaikan.html",
                 controller : "addPerbaikanCtrl"
+            }).
+            when("/perbaikan/detail",{
+                templateUrl : "view/perbaikan/detailPerbaikan.html",
+                controller : "detailPerbaikanCtrl"
             }).
             otherwise({
                 redirectTo : "/home"

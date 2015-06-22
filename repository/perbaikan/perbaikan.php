@@ -20,6 +20,7 @@ if(isset($_POST["action"])){
     }
     if($action == "add"){
         echo AddPerbaikan($conn_db,$params);
+//        print_r(AddPerbaikan($conn_db,$params));
     }
     if($action == "delete"){
         echo DeletePerbaikan($conn_db,$params);
@@ -62,7 +63,8 @@ function GetPerbaikanByTglKeluar($cnn,$params){
 }
 function AddPerbaikan($cnn,$params){
     $obj = json_decode($params);
-    $que = "insert into perbaikan(tglmasuk, kerusakan) values (curdate(), '$obj->kerusakan')";
+    $que = "insert into perbaikan(tglmasuk,idcustomer,unit, keteranganrusak, status) values
+            (now(),$obj->idcustomer, '$obj->perangkat','$obj->kerusakan', '$obj->status')";
     $result = mysqli_query($cnn,$que);
     mysqli_close($cnn);
     return $result;
