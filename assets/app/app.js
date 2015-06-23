@@ -52,6 +52,10 @@
                 templateUrl : "view/perbaikan/perbaikan.html",
                 controller : "perbaikanCtrl"
             }).
+            when("/perbaikan/list/:tgl/:status",{
+                templateUrl : "view/perbaikan/listPerbaikan.html",
+                controller : "listPerbaikanCtrl"
+            }).
             when("/perbaikan/add",{
                 templateUrl : "view/perbaikan/addPerbaikan.html",
                 controller : "addPerbaikanCtrl"

@@ -1,0 +1,83 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li class='active'><a href="#/perbaikan">Perbaikan</a></li>
+        <li>List Perbaikan</li>
+    </ol>
+    <h1>Daftar Perbaikan Perangkat</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <accordion close-others="true">
+                <accordion-group data-ng-class="panelClass(item.status)"
+                                 data-ng-repeat="item in listData.listPerbaikan">
+                    <accordion-heading>
+                        #{{item.idperbaikan}} {{item.namacustomer}} - {{item.status}}
+                    </accordion-heading>
+                    <div class="col-sm-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tgl. Masuk</label>
+
+                                <div class="col-sm-6">
+                                    <input ng-model="item.tglmasuk" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Perangkat</label>
+
+                                <div class="col-sm-6">
+                                    <input ng-model="item.unit" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Ket. Rusak</label>
+
+                                <div class="col-sm-6">
+                                    <textarea ng-model="item.keteranganrusak" type="text"
+                                              class="form-control"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Ket. Kembali</label>
+
+                                <div class="col-sm-6">
+                                    <textarea ng-model="item.keterangankembali" type="text"
+                                              class="form-control"> </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tgl. Selesai</label>
+
+                                <div class="col-sm-6">
+                                    <input ng-model="item.tglselesai" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Biaya Perbaikan</label>
+
+                                <div class="col-sm-6">
+                                    <input ng-model="item.total" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
+        </div>
+    </div>
+
+</div>
+
+<!-- container -->
+
+
+
+
+

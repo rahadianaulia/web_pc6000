@@ -94,6 +94,7 @@
                                 <button class="btn-primary btn" data-ng-click="">Selesai</button>
                                 <button class="btn-warning btn" data-ng-click="">Edit Perbaikan</button>
                                 <button class="btn-danger btn" data-ng-click="">Hapus</button>
+                                <button class="btn-info btn" data-ng-click="tambahDetail()">Tambah Detail</button>
                                 <a href="#/perbaikan" class="btn-default btn" data-ng-click="cancel()">Kembali</a>
                             </div>
                         </div>
@@ -115,11 +116,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr data-ng-repeat="item in respon.listCustomer">
-                                <td data-ng-hide="true">{{item.idcustomer}}</td>
-                                <td>{{item.nama}}</td>
-                                <td>{{item.alamat}}</td>
-                                <td>{{item.no_hp}}</td>
+                            <tr data-ng-repeat="item in listDetail.arrDetail">
+                                <td data-ng-hide="true">{{item.idperbaikan}}</td>
+                                <td>{{item.namaBarang}}</td>
+                                <td>{{item.hargaBarang}}</td>
+                                <td>{{item.jasa}}</td>
                                 <td>
                                     <a class="btn btn-primary btn-xs" data-ng-click="editCustomer(item)">Edit</a>
                                     <button class="btn btn-danger btn-xs" data-ng-click="delete(item)">Delete</button>

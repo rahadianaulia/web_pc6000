@@ -63,45 +63,9 @@
                         <div class="form-group">
                             <div class="col-sm-6 col-sm-offset-3">
                                 <div class="btn-toolbar">
-                                    <button type="submit" class="btn-primary btn" data-ng-click="viewData()">View Data
-                                    </button>
+                                    <a href="#/perbaikan/list/{{tglMasuk}}/{{status.perbaikan}}" class="btn btn-primary">View Data</a>
                                     <a href="#/perbaikan/add" class="btn-primary btn">New Order</a>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="panel-body collapse in" data-ng-show="dataPerbaikan.listPerbaikan.length">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>Tgl. Masuk</th>
-                                        <th>Nama Customer</th>
-                                        <th>Unit</th>
-                                        <th>Keterangan Kerusakan</th>
-                                        <th>Status</th>
-                                        <th>Tgl. Selesai</th>
-                                        <th>Total</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr data-ng-repeat="item in dataPerbaikan.listPerbaikan">
-                                        <td>{{item.tglmasuk}}</td>
-                                        <td>{{item.namacustomer}}</td>
-                                        <td>{{item.unit}}</td>
-                                        <td>{{item.keteranganrusak}}</td>
-                                        <td>{{item.status}}</td>
-                                        <td>{{item.tglselesai}}</td>
-                                        <td>{{item.total}}</td>
-                                        <td>
-                                            <a href="#/perbaikan/detail" data-ng-click="detail(item)"
-                                               class="btn btn-info btn-xs">
-                                                Detail
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </form>
