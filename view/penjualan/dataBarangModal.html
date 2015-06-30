@@ -1,0 +1,72 @@
+<div class="modal-body">
+    <div class="panel panel-grape">
+        <div class="panel-heading">
+            <h4><b>Barang</b></h4>
+        </div>
+        <div class="panel-body">
+            <form ng-submit="tambahDataBarang()" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                    
+                    <div class="form-group">
+                        <div class='alert alert-dismissable alert-info' ng-show="messageSuccess">Data Barang telah ditambahkan.</div>
+                        <label class="col-sm-3 control-label">Kode Barang</label>
+                        <div class="col-sm-6">
+                            <input typeahead-on-select="cariBarang($item)" typeahead="item.idbarang as item.namabarang for item in respon.listBarang | filter:$viewValue | limitTo:8" ng-model="barang.kode" type="text" placeholder="Nama Barang" required="required" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nama Barang</label>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Nama Barang" ng-model="barang.nama" class="form-control" ng-disabled="namaBarangDisable" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">ID Jenis</label>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="ID Jenis" ng-model="barang.idjenis" class="form-control" ng-disabled="idJenisDisable" required>                            
+                        </div>                      
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Jenis Barang</label>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Jenis Barang" ng-model="barang.namajenis" class="form-control" ng-disabled="namaJenisDisable" required>                            
+                        </div>                      
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Satuan</label>
+                        <div class="col-sm-6">
+                            <input ng-model="barang.satuan" type="text" placeholder="Satuan" required="required" class="form-control" ng-disabled="satuanDisable">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Harga Jual</label>
+                        <div class="col-sm-6">
+                            <input ng-model="barang.hargajual" type="text" placeholder="Harga Jual" required="required" class="form-control" ng-disabled="hargaJualDisable">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Jumlah Jual</label>
+                        <div class="col-sm-6">
+                            <input ng-model="barang.jumlahjual" type="text" placeholder="Jumlah Stock" required="required" class="form-control" ng-disabled="jumlahStockDisable">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="btn-toolbar">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn-default btn" data-ng-click="cancelTambahBarang()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+
+</div>
+

@@ -56,6 +56,14 @@
                 templateUrl : "view/perbaikan/addPerbaikan.html",
                 controller : "addPerbaikanCtrl"
             }).
+            when("/penjualan",{
+                templateUrl : "view/penjualan/penjualan.html",
+                controller : "penjualanCtrl"
+            }).
+            when("/penjualan/inputPenjualan",{
+                templateUrl : "view/penjualan/addPenjualan.html",
+                controller : "addPenjualanCtrl"
+            }).
             otherwise({
                 redirectTo : "/home"
             })
